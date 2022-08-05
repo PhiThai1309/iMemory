@@ -15,20 +15,26 @@ struct CardView: View {
     @State var flip: Bool = false
     @State var rotation = 0.0
     @State var contentRotate = 0.0
+    @State var isShowing = true
     
     var body: some View {
         ZStack {
-            if flip {
-                RoundedRectangle(cornerRadius: 10).foregroundColor(Color.white)
-                RoundedRectangle(cornerRadius: 10).stroke().fill(Color.orange)
-                Text(card.content).font(numberOfPairs == 5 ? Font.title : Font.largeTitle)
+            if isShowing {
+                if flip{
+                    RoundedRectangle(cornerRadius: 10).foregroundColor(Color.white)
+                    RoundedRectangle(cornerRadius: 10).stroke().fill(Color.orange)
+                    Text(card.content).font(numberOfPairs == 5 ? Font.title : Font.largeTitle)
+                } else {
+                    RoundedRectangle(cornerRadius: 10).foregroundColor(Color.orange)
+                }
             } else {
-                RoundedRectangle(cornerRadius: 10).foregroundColor(Color.orange)
+                RoundedRectangle(cornerRadius: 10).foregroundColor(Color("card-hidden"))
             }
         }
         .rotation3DEffect(.degrees(contentRotate), axis: (x: 0, y: 1, z: 0))
         .onTapGesture {
             flipCard()
+            isShowing.toggle()
         }
         .rotation3DEffect(.degrees(rotation), axis: (x: 0, y: 1, z: 0))
     }

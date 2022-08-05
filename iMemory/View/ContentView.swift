@@ -14,8 +14,7 @@ struct ContentView: View {
         ]
     
     var body: some View {
-        HStack {
-            
+        VStack {
             LazyVGrid(columns: columns){
                 ForEach(emojiGame.cards) { card in
                     CardView(card: card, numberOfPairs: self.emojiGame.pairs)
@@ -24,6 +23,10 @@ struct ContentView: View {
                         }
                         .aspectRatio(0.66, contentMode: .fit)
                 }
+            }
+            Spacer()
+            Button("Shuffle"){
+                
             }
         }.padding(10)
     }

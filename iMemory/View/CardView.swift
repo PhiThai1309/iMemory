@@ -1,54 +1,62 @@
 //
 //  CardView.swift
-//  iMemory
+//  Memory Game
 //
-//  Created by Phi Thai on 05/08/2022.
-//https://www.youtube.com/watch?v=v2Xf1gwcQSA
+//  Created by Phi Thai on 09/08/2022.
+//
 
 import Foundation
 import SwiftUI
 
 struct CardView: View {
-    var card: Card
-    var numberOfPairs: Int
-
-    @State var flip: Bool = false
-    @State var rotation = 0.0
-    @State var contentRotate = 0.0
-    @State var isShowing = true
+    @ObservedObject var card: Card
     
+    let width: Int = 80
+
+    @Binding var MatchedCard:[Card]
+    @Binding var UserChoices:[Card]
     var body: some View {
-        ZStack {
-            if isShowing {
-                if flip{
-                    RoundedRectangle(cornerRadius: 10).foregroundColor(Color.white)
-                    RoundedRectangle(cornerRadius: 10).stroke().fill(Color.orange)
-                    Text(card.content).font(numberOfPairs == 5 ? Font.title : Font.largeTitle)
-                } else {
-                    RoundedRectangle(cornerRadius: 10).foregroundColor(Color.orange)
-                }
+        if !MatchedCard.contains(where: {$0.id == card.id}) {
+            if card.isFaceUp {
+                Text(card.content)
+                .font(.system(size: CGFloat(width - 40)))
+                .frame(width: CGFloat(width), height: CGFloat(width))
+                .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.red, lineWidth: 5))
             } else {
-                RoundedRectangle(cornerRadius: 10).foregroundColor(Color("card-hidden"))
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.red)
+                    .frame(width: CGFloat(width), height: CGFloat(width))
+                    .onTapGesture {
+                        print(card.isFaceUp)
+                        if UserChoices.count == 0 {
+                            card.turnOver()
+                            UserChoices.append(card)
+                        } else if UserChoices.count == 1 {
+                            card.turnOver()
+                            UserChoices.append(card)
+                            withAnimation(Animation.linear.delay(1)) {
+                                for thisCard in UserChoices {
+                                    thisCard.turnOver()
+                                }
+                            }
+                            checkForMatch()
+                        }
+                    }
             }
+        } else {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.white)
+                .frame(width: 0, height: 0)
         }
-        .rotation3DEffect(.degrees(contentRotate), axis: (x: 0, y: 1, z: 0))
-        .onTapGesture {
-            flipCard()
-            isShowing.toggle()
-        }
-        .rotation3DEffect(.degrees(rotation), axis: (x: 0, y: 1, z: 0))
     }
     
-    func flipCard() {
-        let animationTime = 0.5
-        withAnimation(Animation.linear(duration: animationTime)) {
-            rotation += 180.0
+    func checkForMatch() {
+        if UserChoices[0].content == UserChoices[1].content {
+            MatchedCard.append(UserChoices[0])
+            MatchedCard.append(UserChoices[1])
             
         }
-        
-        withAnimation(Animation.linear(duration: 0.001).delay(animationTime / 2)) {
-            contentRotate += 180.0
-            flip.toggle()
-        }
+        UserChoices.removeAll()
     }
 }

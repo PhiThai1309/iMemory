@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class MemoryGame {
+class MemoryGame: ObservableObject {
     private var model: CardModel = MemoryGame.createMemoryGame()
     
     static func createMemoryGame() -> CardModel {

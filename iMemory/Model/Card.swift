@@ -7,10 +7,19 @@
 
 import Foundation
 
-struct Card: Identifiable {
+class Card: Identifiable, ObservableObject {
     var id: Int
     
-    var isFaceUp: Bool = true
-    var isMatched: Bool = false
-    var content: String
+    @Published var isFaceUp: Bool = false
+    @Published var isMatched: Bool = false
+    @Published  var content: String
+    
+    init(id: Int, content: String) {
+        self.id = id
+        self.content = content
+    }
+    
+    func turnOver() {
+        self.isFaceUp.toggle()
+    }
 }

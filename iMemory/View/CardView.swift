@@ -3,7 +3,7 @@
 //  Memory Game
 //
 //  Created by Phi Thai on 09/08/2022.
-//
+// https://github.com/SamuelDo02/swiftuitutorials/blob/main/Flashcard.swift
 
 import Foundation
 import SwiftUI
@@ -12,23 +12,28 @@ struct CardView: View {
     @ObservedObject var card: Card
     
     let width: Int = 80
-
+    @State var check = false
+    @State var flashcardRotation = 0.0
+    @State var contentRotation = 0.0
+    @State var opacity = 1.0
+    
     @Binding var MatchedCard:[Card]
     @Binding var UserChoices:[Card]
     var body: some View {
-        if !MatchedCard.contains(where: {$0.id == card.id}) {
-            if card.isFaceUp {
-                Text(card.content)
+        if(card.isFaceUp) {
+            Text(card.content)
                 .font(.system(size: CGFloat(width - 40)))
                 .frame(width: CGFloat(width), height: CGFloat(width))
                 .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.red, lineWidth: 5))
-            } else {
+            
+        } else {
+            if !MatchedCard.contains(where: {$0.id == card.id}) {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.red)
                     .frame(width: CGFloat(width), height: CGFloat(width))
+                    .rotation3DEffect(.degrees(contentRotation), axis: (x: 0, y: 1, z: 0))
                     .onTapGesture {
-                        print(card.isFaceUp)
                         if UserChoices.count == 0 {
                             card.turnOver()
                             UserChoices.append(card)
@@ -36,27 +41,49 @@ struct CardView: View {
                             card.turnOver()
                             UserChoices.append(card)
                             withAnimation(Animation.linear.delay(1)) {
-                                for thisCard in UserChoices {
-                                    thisCard.turnOver()
-                                }
+                                flipFlashcard()
+                                print(contentRotation)
+                                print(flashcardRotation)
                             }
                             checkForMatch()
                         }
                     }
+                    .rotation3DEffect(.degrees(flashcardRotation), axis: (x: 0, y: 1, z: 0))
+            } else {
+                Text(card.content)
+                    .font(.system(size: CGFloat(width - 40)))
+                    .frame(width: CGFloat(width), height: CGFloat(width))
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.red, lineWidth: 5))
+                    .opacity(opacity - 1.0)
+                    .animation(.default, value: opacity)
             }
-        } else {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white)
-                .frame(width: 0, height: 0)
         }
     }
     
-    func checkForMatch() {
+    func checkForMatch(){
         if UserChoices[0].content == UserChoices[1].content {
             MatchedCard.append(UserChoices[0])
             MatchedCard.append(UserChoices[1])
             
+            UserChoices.removeAll()
+            for thisCard in UserChoices {
+                thisCard.turnOver()
+            }
         }
         UserChoices.removeAll()
+    }
+    
+    func flipFlashcard() {
+        flashcardRotation += 180
+        contentRotation += 180
+        for thisCard in UserChoices {
+            withAnimation(Animation.linear(duration: 0.5)) {
+            }
+            
+            withAnimation(Animation.linear(duration: 0.5).delay(1)) {
+                thisCard.turnOver()
+            }
+        }
     }
 }

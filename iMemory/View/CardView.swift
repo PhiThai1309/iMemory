@@ -15,7 +15,6 @@ struct CardView: View {
     @State var check = false
     @State var flashcardRotation = 0.0
     @State var contentRotation = 0.0
-    @State var opacity = 1.0
     
     @Binding var MatchedCard:[Card]
     @Binding var UserChoices:[Card]
@@ -32,31 +31,26 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.red)
                     .frame(width: CGFloat(width), height: CGFloat(width))
-                    .rotation3DEffect(.degrees(contentRotation), axis: (x: 0, y: 1, z: 0))
+//                    .rotation3DEffect(.degrees(contentRotation), axis: (x: 0, y: 1, z: 0))
                     .onTapGesture {
-                        if UserChoices.count == 0 {
-                            card.turnOver()
-                            UserChoices.append(card)
-                        } else if UserChoices.count == 1 {
-                            card.turnOver()
-                            UserChoices.append(card)
+                        card.turnOver()
+                        UserChoices.append(card)
+                        if UserChoices.count == 2 {
                             withAnimation(Animation.linear.delay(1)) {
                                 flipFlashcard()
-                                print(contentRotation)
-                                print(flashcardRotation)
                             }
                             checkForMatch()
                         }
                     }
-                    .rotation3DEffect(.degrees(flashcardRotation), axis: (x: 0, y: 1, z: 0))
+//                    .rotation3DEffect(.degrees(flashcardRotation), axis: (x: 0, y: 1, z: 0))
             } else {
                 Text(card.content)
                     .font(.system(size: CGFloat(width - 40)))
                     .frame(width: CGFloat(width), height: CGFloat(width))
                     .overlay(RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.red, lineWidth: 5))
-                    .opacity(opacity - 1.0)
-                    .animation(.default, value: opacity)
+                    .opacity(0.0)
+                //                    .animation(.default, value: opacity)
             }
         }
     }
@@ -78,12 +72,7 @@ struct CardView: View {
         flashcardRotation += 180
         contentRotation += 180
         for thisCard in UserChoices {
-            withAnimation(Animation.linear(duration: 0.5)) {
-            }
-            
-            withAnimation(Animation.linear(duration: 0.5).delay(1)) {
-                thisCard.turnOver()
-            }
+            thisCard.turnOver()
         }
     }
 }

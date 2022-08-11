@@ -22,4 +22,9 @@ class Card: Identifiable, ObservableObject {
     func turnOver() {
         self.isFaceUp.toggle()
     }
+    
+    func matched() {
+        self.isMatched = true
+    }
 }
+

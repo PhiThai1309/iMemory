@@ -10,56 +10,42 @@ import SwiftUI
 
 struct CardModel {
     private(set) var cards: Array<Card>
-    var numberOfPairs: Int
+//    var numberOfPairs: Int
     
     init(numberOfPairsOfCards: Int, contentFactory: (Int) -> String) {
         cards = []
-        numberOfPairs = numberOfPairsOfCards
         
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = contentFactory(pairIndex)
             
             // append two cards (a pair) to the array of cards
             cards.append(Card(id: pairIndex * 2, content: content))
-            cards.append(Card(id: pairIndex * 2+1, content: content))
+            cards.append(Card(id: pairIndex * 2 + 1, content: content))
         }
-        
-        cards.shuffle()
     }
     
-    private var indexOfTheOneAndOnlyFaceUpCard: Int? {
-        get { cards.indices.filter { index in cards[index].isFaceUp }.only }
-        set {
-            for index in cards.indices {
-                    cards[index].isFaceUp = index == newValue
-            }
-        }
-        
+    mutating func choose(card: Card) {
+        let idx = index(of: card)
+        cards[idx].isFaceUp.toggle()
     }
     
-    mutating func chooseCard(card: Card) {
-        if let choosenIndex = cards.firstIndex(matching: card), !card.isFaceUp, !card.isMatched {
-//            print(choosenIndex)
-            
-            if let lastChoosenIndex = indexOfTheOneAndOnlyFaceUpCard {
-                if cards[choosenIndex].content == cards[lastChoosenIndex].content {
-                    cards[choosenIndex].isMatched = true
-                    cards[lastChoosenIndex].isMatched = true
-                }
-                cards[choosenIndex].isFaceUp = true
-//                print(cards)
-            } else {
-                indexOfTheOneAndOnlyFaceUpCard = choosenIndex
+    func index(of: Card) -> Int{
+        for index in 0..<cards.count {
+            if(of.id == cards[index].id) {
+                return index
             }
-//            print(cards[choosenIndex].isFaceUp)
         }
-//        print("\(card)")
+        return 0
+    }
+    
+    struct Card: Hashable, Identifiable {
+        var id: Int
+        
+        var isFaceUp: Bool = true
+        var isMatched: Bool = false
+        var content: String
     }
 }
-
-var emojis = ["👻", "🧟‍♂️", "🧙🏻‍♂️", "🎃", "🕸"]
-var randomNumberOfPairs = 4
-
 
 extension Array {
     var only: Element? {

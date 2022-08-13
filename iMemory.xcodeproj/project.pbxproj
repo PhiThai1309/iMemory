@@ -13,8 +13,7 @@
 		34DD7116289CF3FD0097B57E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34DD7115289CF3FD0097B57E /* Preview Assets.xcassets */; };
 		34DD711D289CF4B40097B57E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DD711C289CF4B40097B57E /* CardView.swift */; };
 		34DD711F289CF8110097B57E /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DD711E289CF8110097B57E /* CardModel.swift */; };
-		34DD7121289CF8400097B57E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DD7120289CF8400097B57E /* Card.swift */; };
-		34DD7125289D01AD0097B57E /* ModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DD7124289D01AD0097B57E /* ModelView.swift */; };
+		34DD7125289D01AD0097B57E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DD7124289D01AD0097B57E /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +24,7 @@
 		34DD7115289CF3FD0097B57E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		34DD711C289CF4B40097B57E /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		34DD711E289CF8110097B57E /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
-		34DD7120289CF8400097B57E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		34DD7124289D01AD0097B57E /* ModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelView.swift; sourceTree = "<group>"; };
+		34DD7124289D01AD0097B57E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +78,6 @@
 		34DD7122289CFCFE0097B57E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				34DD7120289CF8400097B57E /* Card.swift */,
 				34DD711E289CF8110097B57E /* CardModel.swift */,
 			);
 			path = Model;
@@ -98,7 +95,7 @@
 		34DD7126289D113D0097B57E /* Model View */ = {
 			isa = PBXGroup;
 			children = (
-				34DD7124289D01AD0097B57E /* ModelView.swift */,
+				34DD7124289D01AD0097B57E /* ViewModel.swift */,
 			);
 			path = "Model View";
 			sourceTree = "<group>";
@@ -173,10 +170,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34DD7125289D01AD0097B57E /* ModelView.swift in Sources */,
+				34DD7125289D01AD0097B57E /* ViewModel.swift in Sources */,
 				34DD7111289CF3FB0097B57E /* ContentView.swift in Sources */,
 				34DD711F289CF8110097B57E /* CardModel.swift in Sources */,
-				34DD7121289CF8400097B57E /* Card.swift in Sources */,
 				34DD711D289CF4B40097B57E /* CardView.swift in Sources */,
 				34DD710F289CF3FB0097B57E /* iMemoryApp.swift in Sources */,
 			);

@@ -8,27 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var emojiGame: MemoryGame
+    @ObservedObject var viewModel: MemoryGame
+    
     let columns = [
             GridItem(.adaptive(minimum: 80))
         ]
     
-    @State var MatchedCards = [Card]()
-    @State var UserChoices = [Card]()
-    
     var body: some View {
         LazyVGrid(columns: columns){
-            ForEach(emojiGame.cards) { card in
-                CardView(card: card, MatchedCard: $MatchedCards, UserChoices: $UserChoices)
-                    .aspectRatio(0.66, contentMode: .fit)
+            ForEach(viewModel.cards) { card in
+                CardView(card: card)
+                    .aspectRatio(2/3 , contentMode: .fit)
+                    .onTapGesture {
+                        viewModel.choose(card)
+                    }
             }
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(emojiGame: MemoryGame())
-            .previewDevice("iPhone 11")
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    let emoji = MemoryGame()
+//    static var previews: some View {
+//        ContentView(viewModel: emoji)
+//            .previewDevice("iPhone 11")
+//    }
+//}

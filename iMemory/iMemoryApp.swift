@@ -9,10 +9,19 @@ import SwiftUI
 
 @main
 struct iMemoryApp: App {
-    let memoryGame = MemoryGame()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: memoryGame)
+            TabView {
+                HomeView()
+                    .tabItem{
+                        Label("Home", systemImage: "list.dash")
+                    }
+                HowToPlay()
+                    .tabItem {
+                        Label("Guide", systemImage: "list.dash")
+                    }
+            }
         }
     }
 }

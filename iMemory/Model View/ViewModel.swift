@@ -10,7 +10,7 @@ import SwiftUI
 
 class MemoryGame: ObservableObject {
     static let emojis = ["👻", "🧟‍♂️", "🧙🏻‍♂️", "🎃", "🕸"]
-    static let randomNumberOfPairs = 4
+    static let randomNumberOfPairs = 5
 
     @Published private var model: CardModel = MemoryGame.createMemoryGame()
     
@@ -28,6 +28,18 @@ class MemoryGame: ObservableObject {
     // MARK: -Intents
     func choose(_ card: CardModel.Card) {
         model.choose(card: card)
+    }
+    
+    func shuffle() {
+        model.shuffle()
+    }
+    
+    func restart() {
+        model = MemoryGame.createMemoryGame()
+    }
+    
+    func getScore() -> Int {
+        return model.getScore()
     }
 }
 

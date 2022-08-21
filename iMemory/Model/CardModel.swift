@@ -10,20 +10,21 @@ import SwiftUI
 
 struct CardModel {
     private(set) var cards: Array<Card>
-//    var numberOfPairs: Int
+    private(set) var score: Int
     
     private var indexOfFacingUpCard: Int?
     
     init(numberOfPairsOfCards: Int, contentFactory: (Int) -> String) {
         cards = []
+        score = 0
         
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = contentFactory(pairIndex)
-            
             // append two cards (a pair) to the array of cards
             cards.append(Card(id: pairIndex * 2, content: content))
             cards.append(Card(id: pairIndex * 2 + 1, content: content))
         }
+        cards.shuffle()
     }
     
     mutating func choose(card: Card) {
@@ -32,6 +33,11 @@ struct CardModel {
                 if cards[potentialMatchIndex].content == cards[idx].content {
                     cards[potentialMatchIndex].isMatched = true
                     cards[idx].isMatched = true
+                    
+                    changeScore(to: score + MATCH_POINT_CHANGE + Int(6 - cards[potentialMatchIndex].pastTime))
+                    print(cards[potentialMatchIndex].pastTime)
+                } else if score > 1 {
+                    changeScore(to: score + MISMATCH_POINT_CHANGE)
                 }
                 indexOfFacingUpCard = nil
             } else {
@@ -44,13 +50,97 @@ struct CardModel {
         }
     }
     
+    mutating func shuffle() {
+        cards.shuffle()
+    }
+    
+    //MARK: Game Score
+    func getScore() -> Int {
+        return score
+    }
+    
+    mutating func changeScore(to newScore: Int) {
+        score = newScore
+    }
+    
+    //MARK: Card Model
     struct Card: Hashable, Identifiable {
         var id: Int
         
         var isFaceUp: Bool = false
+        {
+            didSet {
+                if isFaceUp {
+                    startUsingBonusTime()
+                }
+                else {
+                    stopUsingBonusTime()
+                }
+            }
+        }
         var isMatched: Bool = false
+        {
+            didSet {
+                stopUsingBonusTime()
+            }
+        }
         var content: String
+        
+        //MARK: -Bonus Time
+        var bonusTimeLimit: TimeInterval = 6
+        
+        //The last time this card face up
+        var pastTime: TimeInterval = 0
+        
+        var lastFaceUpDate: Date?
+        
+        
+        
+        //The accumulated time this card has turned face up
+        
+        private var faceUpTime: TimeInterval {
+            if let lastFaceUpDate = self.lastFaceUpDate {
+                return Date().timeIntervalSince(lastFaceUpDate)
+            } else {
+                return TimeInterval(0)
+            }
+        }
+        
+        var bonusTimeRemaining: TimeInterval {
+            max(0, bonusTimeLimit - faceUpTime)
+        }
+        
+        var bonusRemaining: Double {
+            return            (bonusTimeLimit > 0 && bonusTimeRemaining > 0) ? bonusTimeRemaining/bonusTimeLimit : 0
+        }
+        
+        var isConsumingBonusTime: Bool {
+            isFaceUp && !isMatched && bonusTimeRemaining > 0
+        }
+        
+        var bonusPoint: Int {
+            Int(bonusTimeLimit - pastTime)
+        }
+        
+        var hasEarnedBonus: Bool {
+            isMatched && bonusTimeRemaining > 0
+        }
+        
+        private mutating func startUsingBonusTime() {
+            if isConsumingBonusTime, lastFaceUpDate == nil  {
+                lastFaceUpDate = Date()
+            }
+        }
+        
+        private mutating func stopUsingBonusTime() {
+            pastTime = faceUpTime
+            lastFaceUpDate = nil
+        }
     }
+    
+    let MATCH_POINT_CHANGE = 10
+    let MISMATCH_POINT_CHANGE = -5
+    let MAX_BONUS_POINT = 6
 }
 
 extension Array {

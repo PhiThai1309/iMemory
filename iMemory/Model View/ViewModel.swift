@@ -35,6 +35,7 @@ class MemoryGame: ObservableObject {
     }
     
     func restart() {
+        shuffle()
         model = MemoryGame.createMemoryGame()
     }
     

@@ -3,13 +3,18 @@
 //  iMemory
 //
 //  Created by Phi Thai on 05/08/2022.
-//
+// https://stackoverflow.com/questions/61930915/swiftui-detecting-the-navigationview-back-button-press
 
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel: MemoryGame
-    @Binding var show: Bool
+    @ObservedObject var userModel: UserModelMV
+    @ObservedObject var memoryGame = MemoryGame()
+    
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
+    @State var userName = ""
+    @State var show = false
     
     let columns = [
         GridItem(.adaptive(minimum: 80))
@@ -20,7 +25,8 @@ struct ContentView: View {
             Color("Purple")
                 .ignoresSafeArea()
             VStack {
-                Text("Score: \(viewModel.getScore())")
+                Text("Welcome: \(userName)")
+                Text("Score: \(memoryGame.getScore())")
                     .modifier(TextModifier())
                 gameBody
                 Spacer()
@@ -32,13 +38,20 @@ struct ContentView: View {
             }
             .padding(20)
             .foregroundColor(Color("Card"))
-            UserRegister(show: $show)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: Button(action : {
+                self.mode.wrappedValue.dismiss()
+                userModel.addPoint(memoryGame.getScore())
+            }){
+                Image(systemName: "arrow.left")
+            })
+            UserRegister(name: $userName ,userModel: userModel, show: $show)
         }
     }
     
     var gameBody: some View {
         LazyVGrid(columns: columns){
-            ForEach(viewModel.cards) { card in
+            ForEach(memoryGame.cards) { card in
                 if !card.isFaceUp && card.isMatched {
                     Rectangle().opacity(0.0)
                 } else {
@@ -47,7 +60,7 @@ struct ContentView: View {
                         .transition(AnyTransition.scale)
                         .onTapGesture {
                             withAnimation {
-                                viewModel.choose(card)
+                                memoryGame.choose(card)
                             }
                         }
                 }
@@ -59,7 +72,7 @@ struct ContentView: View {
     var shuffle: some View {
         Button {
             withAnimation {
-                viewModel.shuffle()
+                memoryGame.shuffle()
             }
         } label: {
             Text("Shuffle")
@@ -71,7 +84,7 @@ struct ContentView: View {
     var restart: some View {
         Button {
             withAnimation {
-                viewModel.restart()
+                memoryGame.restart()
             }
         }  label: {
             Text("Restart")

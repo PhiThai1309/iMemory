@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    let memoryGame = MemoryGame()
+    let userData = UserModelMV()
     
     @State private var action: Int? = 0
-    @State var show = false
     
     var body: some View {
         NavigationView {
@@ -28,7 +27,7 @@ struct HomeView: View {
                         .modifier(TextModifier())
                     Spacer()
                     HStack {
-                        NavigationLink(destination: ContentView(viewModel: memoryGame, show: $show), tag: 1, selection: $action) {
+                        NavigationLink(destination: ContentView(userModel: userData), tag: 1, selection: $action) {
                             Button {
                                 self.action = 1
                             } label: {

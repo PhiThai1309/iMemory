@@ -3,15 +3,17 @@
 //  iMemory
 //
 //  Created by Phi Thai on 23/08/2022.
-//
-
+// https://codewithchris.com/swiftui/swiftui-textfield/
+// https://sarunw.com/posts/textfield-in-swiftui/
+// https://www.simpleswiftguide.com/swiftui-textfield-complete-tutorial/
+ 
 import SwiftUI
 
 struct UserRegister: View {
-    let memoryGame = MemoryGame()
-    
-    @State var name = ""
+    @Binding var name: String
     @State private var action: Int? = 0
+    
+    @ObservedObject var userModel: UserModelMV
     
     @Binding var show: Bool
     
@@ -22,14 +24,18 @@ struct UserRegister: View {
                 ZStack {
                     Color("Green")
                     VStack{
-                        Text("Register: ")
-                        TextField(
-                            "Placeholder text",
-                            text: $name
-                        )
-                        
+                        Text("Register: \(name)")
+                        HStack {
+                            Text("User name: ")
+                            TextField(
+                                "Placeholder text",
+                                text: $name
+                            )
+                        }
+                        Spacer()
                         Button {
                             show = true
+                            userModel.addUser(name)
                         } label: {
                             Text("Play game")
                                 .padding(5)
@@ -39,16 +45,9 @@ struct UserRegister: View {
                     }
                     .padding()
                 }
-                .frame(width: 300, height: 500)
+                .frame(width: 300, height: 300)
                 .cornerRadius(20)
             }
         }
-    }
-}
-
-struct UserRegister_Previews: PreviewProvider {
-    static var previews: some View {
-        UserRegister(show: .constant(true))
-            .previewDevice("iPhone 11")
     }
 }

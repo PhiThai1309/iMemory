@@ -9,14 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var viewModel: MemoryGame
+    @Binding var show: Bool
     
     let columns = [
-            GridItem(.adaptive(minimum: 80))
-        ]
+        GridItem(.adaptive(minimum: 80))
+    ]
     
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
+            Color("Purple")
+                .ignoresSafeArea()
             VStack {
+                Text("Score: \(viewModel.getScore())")
+                    .modifier(TextModifier())
                 gameBody
                 Spacer()
                 HStack{
@@ -25,13 +30,10 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
             }
+            .padding(20)
+            .foregroundColor(Color("Card"))
+            UserRegister(show: $show)
         }
-        
-        .padding(20)
-        .foregroundColor(.red)
-        .navigationTitle("Game play")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing:Group{Text("Score: \(viewModel.getScore())")})
     }
     
     var gameBody: some View {
@@ -55,18 +57,25 @@ struct ContentView: View {
     }
     
     var shuffle: some View {
-        Button("Shuffle") {
+        Button {
             withAnimation {
-                viewModel.shuffle() 
+                viewModel.shuffle()
             }
+        } label: {
+            Text("Shuffle")
+                .foregroundColor(Color("Green"))
         }
+        
     }
     
     var restart: some View {
-        Button("Restart") {
+        Button {
             withAnimation {
                 viewModel.restart()
             }
+        }  label: {
+            Text("Restart")
+                .foregroundColor(Color("Green"))
         }
     }
 }

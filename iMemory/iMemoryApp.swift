@@ -12,16 +12,17 @@ struct iMemoryApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabView {
-                HomeView()
-                    .tabItem{
-                        Label("Home", systemImage: "list.dash")
-                    }
-                HowToPlay()
-                    .tabItem {
-                        Label("Guide", systemImage: "list.dash")
-                    }
-            }
+            HomeView()
+//            TabView {
+//
+//                    .tabItem{
+//                        Label("Home", systemImage: "list.dash")
+//                    }
+//                HowToPlay()
+//                    .tabItem {
+//                        Label("Guide", systemImage: "list.dash")
+//                    }
+//            }
         }
     }
 }

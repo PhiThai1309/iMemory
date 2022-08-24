@@ -12,7 +12,7 @@ import SwiftUI
 struct UserRegister: View {
     @Binding var name: String
     @State private var action: Int? = 0
-    
+    @State private var already = false
     @ObservedObject var userModel: UserModelMV
     
     @Binding var show: Bool
@@ -33,9 +33,16 @@ struct UserRegister: View {
                             )
                         }
                         Spacer()
+                        if(already) {
+                            Text("User already exist, please register with a different name")
+                        } else {}
                         Button {
-                            show = true
-                            userModel.addUser(name)
+                            if(userModel.getUsers().contains(name)) {
+                                already = true
+                            } else {
+                                show = true
+                                userModel.addUser(name)
+                            }
                         } label: {
                             Text("Play game")
                                 .padding(5)

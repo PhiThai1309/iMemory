@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct Leaderboard: View {
+    @ObservedObject var userModel: UserModelMV
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ForEach(userModel.getUsers(), id: \.self) {
+            user in
+            Text(user)
+        }
     }
 }
 
-struct Leaderboard_Previews: PreviewProvider {
-    static var previews: some View {
-        Leaderboard()
-    }
-}

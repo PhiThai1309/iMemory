@@ -46,7 +46,7 @@ struct HomeView: View {
                             .buttonStyle(.borderedProminent)
                         }
                     }
-                    NavigationLink(destination: Leaderboard(), tag: 3, selection: $action) {
+                    NavigationLink(destination: Leaderboard(userModel: userData), tag: 3, selection: $action) {
                         Button {
                             self.action = 3
                         } label: {

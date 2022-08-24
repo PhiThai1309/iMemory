@@ -41,7 +41,9 @@ struct ContentView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: Button(action : {
                 self.mode.wrappedValue.dismiss()
-                userModel.addPoint(memoryGame.getScore())
+                if(userName != "") {
+                    userModel.addPoint(memoryGame.getScore())
+                }
             }){
                 Image(systemName: "arrow.left")
             })

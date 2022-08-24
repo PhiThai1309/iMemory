@@ -48,6 +48,7 @@ struct UserModel {
     
     func getPoint(name: String) -> Int {
         let index = user.firstIndex(of: name) ?? 0
+//        print(point[index] ?? 0)
         return point[index]
     }
 }

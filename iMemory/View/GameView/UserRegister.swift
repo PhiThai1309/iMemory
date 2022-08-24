@@ -39,7 +39,10 @@ struct UserRegister: View {
                         Button {
                             if(userModel.getUsers().contains(name)) {
                                 already = true
-                            } else {
+                            } else if (name == "") {
+                                show = true;
+                            }
+                            else {
                                 show = true
                                 userModel.addUser(name)
                             }

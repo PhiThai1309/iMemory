@@ -3,12 +3,17 @@
 //  iMemory
 //
 //  Created by Phi Thai on 20/08/2022.
-//
+// https://stackoverflow.com/questions/43402032/how-to-remove-all-userdefaults-data-swift
 
 import SwiftUI
 
 struct HomeView: View {
     let userData = UserModelMV()
+    
+    init() {
+//        UserDefaults.standard.set("", forKey: "User")
+//        UserDefaults.standard.set("", forKey: "Point")
+    }
     
     @State private var action: Int? = 0
     

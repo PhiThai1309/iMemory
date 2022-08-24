@@ -18,7 +18,7 @@ class UserModelMV: ObservableObject {
 //        model.getUser(name: name)
 //    }
     
-    func getPoints(name: String) -> Int {
+    func getPoint(name: String) -> Int {
         model.getPoint(name: name)
     }
     
@@ -28,5 +28,9 @@ class UserModelMV: ObservableObject {
     
     func addPoint(_ score: Int) {
         model.addPoint(score)
+    }
+    
+    func getPoints() -> [Int] {
+        model.getPoints()
     }
 }

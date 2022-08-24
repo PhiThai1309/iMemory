@@ -104,12 +104,14 @@ struct DetailView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
         Button(
-            "Here is Detail View. Tap to go back.",
             action: {
                 if(name != "") {
                     userModel.addPoint(game.getScore())
                 }
                 self.presentationMode.wrappedValue.dismiss()
+            }, label: {
+                Image(systemName: "arrow.backward")
+                    .foregroundColor(Color("Green"))
             }
         )
     }

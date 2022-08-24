@@ -35,6 +35,8 @@ struct HomeView: View {
                         .fontWeight(.bold)
                         .modifier(TextModifier())
                     Spacer()
+                    Text("Choose a game mode")
+                        .modifier(TextModifier())
                     NavigationLink(destination: GameView(gameMode: 5), tag: 1, selection: $action) {
                         Button {
                             self.action = 1
@@ -42,7 +44,7 @@ struct HomeView: View {
                             Text("EASY")
                                 .padding(5)
                         }
-                        .buttonStyle(.borderedProminent)
+                        .modifier(GameButton())
                     }
                     NavigationLink(destination: GameView(gameMode: 7), tag: 4, selection: $action) {
                         Button {
@@ -51,7 +53,7 @@ struct HomeView: View {
                             Text("MEDIUM")
                                 .padding(5)
                         }
-                        .buttonStyle(.borderedProminent)
+                        .modifier(GameButton())
                     }
                     NavigationLink(destination: GameView(gameMode: 10), tag: 5, selection: $action) {
                         Button {
@@ -60,7 +62,7 @@ struct HomeView: View {
                             Text("HARD")
                                 .padding(5)
                         }
-                        .buttonStyle(.borderedProminent)
+                        .modifier(GameButton())
                     }
                     Spacer()
                     HStack {

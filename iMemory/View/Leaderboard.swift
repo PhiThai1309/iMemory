@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Leaderboard: View {
-    @ObservedObject var userModel: UserModelMV
+    @ObservedObject var userModel: UserVM
     
     var body: some View {
 //        let point = userModel.getPoint(name: "Phi")

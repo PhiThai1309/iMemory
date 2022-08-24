@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserModelMV: ObservableObject {
+class UserVM: ObservableObject {
     @Published private var model = UserModel()
     
     func getUsers() -> [String] {

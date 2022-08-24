@@ -9,8 +9,14 @@ import SwiftUI
 
 struct HowToPlay: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .navigationTitle("How to play")
+        Form{
+            Section{
+                Text("iMemory")
+            }
+            Section {
+                Text("How to play")
+            }
+        }
     }
 }
 

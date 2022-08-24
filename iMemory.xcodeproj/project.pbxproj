@@ -75,6 +75,16 @@
 			path = GameView;
 			sourceTree = "<group>";
 		};
+		341AB51128B621A80030D587 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				345D7F8C28B0E28B00C72A94 /* HomeView.swift */,
+				3413FF9328B4E08800E8AA6C /* Leaderboard.swift */,
+				345D7F8A28B0E24800C72A94 /* HowToPlay.swift */,
+			);
+			path = "Main View";
+			sourceTree = "<group>";
+		};
 		345D7F8E28B1346F00C72A94 /* Shape */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,11 +143,9 @@
 		34DD7123289CFD290097B57E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				341AB51128B621A80030D587 /* Main View */,
 				341AB51028B532FB0030D587 /* GameView */,
 				345D7F8E28B1346F00C72A94 /* Shape */,
-				345D7F8A28B0E24800C72A94 /* HowToPlay.swift */,
-				345D7F8C28B0E28B00C72A94 /* HomeView.swift */,
-				3413FF9328B4E08800E8AA6C /* Leaderboard.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

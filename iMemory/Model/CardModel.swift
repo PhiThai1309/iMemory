@@ -13,11 +13,12 @@ struct CardModel {
     private(set) var score: Int
     
     private var indexOfFacingUpCard: Int?
+    private var numberOfPairsOfCards: Int
     
     init(numberOfPairsOfCards: Int, contentFactory: (Int) -> String) {
         cards = []
         score = 0
-        
+        self.numberOfPairsOfCards = numberOfPairsOfCards
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = contentFactory(pairIndex)
             // append two cards (a pair) to the array of cards
@@ -33,10 +34,12 @@ struct CardModel {
                 if cards[potentialMatchIndex].content == cards[idx].content {
                     cards[potentialMatchIndex].isMatched = true
                     cards[idx].isMatched = true
-                    
-                    changeScore(to: score + MATCH_POINT_CHANGE + Int(6 - cards[potentialMatchIndex].pastTime))
-                    print(cards[potentialMatchIndex].pastTime)
-                } else if score > 1 {
+                    if(numberOfPairsOfCards > 6) {
+                        changeScore(to: score + MATCH_POINT_CHANGE + Int(6 - cards[potentialMatchIndex].pastTime))
+                    } else {
+                        changeScore(to: score + MATCH_POINT_CHANGE)
+                    }
+                } else if score > 1 && numberOfPairsOfCards == 10{
                     changeScore(to: score + MISMATCH_POINT_CHANGE)
                 }
                 indexOfFacingUpCard = nil

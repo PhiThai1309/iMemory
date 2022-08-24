@@ -28,6 +28,7 @@ class UserVM: ObservableObject {
     
     func addPoint(_ score: Int) {
         model.addPoint(score)
+        print(score)
     }
     
     func getPoints() -> [Int] {

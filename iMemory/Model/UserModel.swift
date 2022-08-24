@@ -14,6 +14,7 @@ struct UserModel {
     private(set) var user: [String]
     private(set) var point: [Int]
     
+    
     private let database = UserDefaults.standard
     
     init() {

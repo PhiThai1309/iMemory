@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var userModel: UserModelMV
-    @ObservedObject var memoryGame = MemoryGame()
-    
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @ObservedObject var userModel: UserVM = UserVM()
+    @ObservedObject var memoryGame: MemoryGame
     
     @State var userName = ""
     @State var show = false
+    @State var gameMode: Int
+    
+    init(memoryGame: MemoryGame = MemoryGame(randomNumOfPairs: 5), gameMode: Int, userName: String = "", show: Bool = false) {
+        self.userModel = UserVM()
+        self.memoryGame = MemoryGame(randomNumOfPairs: gameMode)
+        self.userName = userName
+        self.show = show
+        self.gameMode = gameMode
+        
+    }
     
     let columns = [
         GridItem(.adaptive(minimum: 80))
@@ -39,14 +47,7 @@ struct ContentView: View {
             .padding(20)
             .foregroundColor(Color("Card"))
             .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: Button(action : {
-                self.mode.wrappedValue.dismiss()
-                if(userName != "") {
-                    userModel.addPoint(memoryGame.getScore())
-                }
-            }){
-                Image(systemName: "arrow.left")
-            })
+            .navigationBarItems(leading: DetailView(name: userName, game: memoryGame, userModel: userModel))
             UserRegister(name: $userName ,userModel: userModel, show: $show)
         }
     }
@@ -95,10 +96,21 @@ struct ContentView: View {
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    let emoji = MemoryGame()
-//    static var previews: some View {
-//        ContentView(viewModel: emoji)
-//            .previewDevice("iPhone 11")
-//    }
-//}
+struct DetailView: View {
+    var name: String
+    @ObservedObject var game: MemoryGame
+    @ObservedObject var userModel: UserVM
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    var body: some View {
+        Button(
+            "Here is Detail View. Tap to go back.",
+            action: {
+                if(name != "") {
+                    userModel.addPoint(game.getScore())
+                }
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        )
+    }
+}

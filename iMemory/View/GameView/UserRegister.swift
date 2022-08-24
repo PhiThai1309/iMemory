@@ -13,7 +13,8 @@ struct UserRegister: View {
     @Binding var name: String
     @State private var action: Int? = 0
     @State private var already = false
-    @ObservedObject var userModel: UserModelMV
+    @State private var empty = false
+    @ObservedObject var userModel: UserVM
     
     @Binding var show: Bool
     
@@ -35,14 +36,20 @@ struct UserRegister: View {
                         Spacer()
                         if(already) {
                             Text("User already exist, please register with a different name")
+                        } else if(empty) {
+                            Text("Please enter a name")
                         } else {}
                         Button {
                             if(userModel.getUsers().contains(name)) {
                                 already = true
+                                empty = false
                             } else if (name == "") {
-                                show = true;
+                                empty = true;
+                                already = false
                             }
                             else {
+                                already = false
+                                empty = false
                                 show = true
                                 userModel.addUser(name)
                             }

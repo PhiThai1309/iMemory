@@ -9,16 +9,36 @@ import Foundation
 import SwiftUI
 
 class MemoryGame: ObservableObject {
-    static let emojis = ["👻", "🧟‍♂️", "🧙🏻‍♂️", "🎃", "🕸"]
-    static let randomNumberOfPairs = 5
+    @State var emojis = ["👻", "🍉", "🍤", "🧆", "🍑", "🍲", "🍱", "🍙", "🍌", "🥘"]
+    @Published var randomNumberOfPairs: Int
 
-    @Published private var model: CardModel = MemoryGame.createMemoryGame()
+    @Published private var model: CardModel
     
-    static func createMemoryGame() -> CardModel {
-        return CardModel(numberOfPairsOfCards: randomNumberOfPairs) {
-            pairIndex in emojis[pairIndex]
-        }
+    
+    func createMemoryGame() {
+        //        return CardModel(numberOfPairsOfCards: randomNumberOfPairs) {
+        //            pairIndex in emojis[pairIndex]
+        //        }
+        
+        self.model = CardModel(numberOfPairsOfCards: randomNumberOfPairs) {
+                pairIndex in emojis[pairIndex]
+            }
+            
     }
+    
+    init(emojis: [String] = ["👻", "🍉", "🍤", "🧆", "🍑", "🍲", "🍱", "🍙", "🍌", "🥘"], randomNumOfPairs: Int){
+        self.emojis = emojis
+        self.randomNumberOfPairs = randomNumOfPairs
+        self.model = CardModel(numberOfPairsOfCards: randomNumOfPairs) {
+                pairIndex in emojis[pairIndex]
+            }
+    
+    }
+    
+//    func getGameMode() -> [String]{
+//        return MemoryGame.gameMode
+//    }
+    
     
     var cards: Array<CardModel.Card> {
         model.cards
@@ -36,7 +56,7 @@ class MemoryGame: ObservableObject {
     
     func restart() {
         shuffle()
-        model = MemoryGame.createMemoryGame()
+        createMemoryGame()
     }
     
     func getScore() -> Int {

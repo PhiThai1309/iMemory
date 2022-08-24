@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class MemoryGame: ObservableObject {
+class GameVM: ObservableObject {
     @State var emojis = ["👻", "🍉", "🍤", "🧆", "🍑", "🍲", "🍱", "🍙", "🍌", "🥘"]
     @Published var randomNumberOfPairs: Int
 

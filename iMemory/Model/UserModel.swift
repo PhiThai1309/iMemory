@@ -42,14 +42,15 @@ struct UserModel {
         print(point)
     }
     
-//    func getUser(name: String) -> String{
-//        let index = user.firstIndex(of: name) ?? 0
-//        return user[index]
-//    }
-    
     func getPoint(name: String) -> Int {
         let index = user.firstIndex(of: name) ?? 0
 //        print(point[index] ?? 0)
         return point[index]
+    }
+    
+    mutating func changeScore(_ score: Int) {
+        let idx = user.count
+        point[idx - 1] = score
+        database.set(point, forKey: "Point")
     }
 }

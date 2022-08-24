@@ -9,7 +9,7 @@
  
 import SwiftUI
 
-struct UserRegister: View {
+struct UserRegisterView: View {
     @Binding var name: String
     @State private var action: Int? = 0
     @State private var already = false
@@ -58,7 +58,6 @@ struct UserRegister: View {
                                 .padding(5)
                         }
                         .buttonStyle(.borderedProminent)
-                        
                     }
                     .padding()
                 }

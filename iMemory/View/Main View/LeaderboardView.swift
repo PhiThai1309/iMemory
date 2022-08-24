@@ -11,7 +11,6 @@ struct Leaderboard: View {
     @ObservedObject var userModel: UserVM = UserVM()
     
     var body: some View {
-//        let point = userModel.getPoint(name: "Phi")
         let point = userModel.getPoints()
         let user = userModel.getUsers()
         Group {

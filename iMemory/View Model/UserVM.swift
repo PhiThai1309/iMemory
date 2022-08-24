@@ -34,4 +34,8 @@ class UserVM: ObservableObject {
     func getPoints() -> [Int] {
         model.getPoints()
     }
+    
+    func changeScore(_ score: Int) {
+        model.changeScore(score)
+    }
 }

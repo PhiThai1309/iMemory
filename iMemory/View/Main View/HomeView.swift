@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    var user = UserDefaults.standard.object(forKey: "Continue") as? [String] ?? []
+    
     init() {
                 UserDefaults.standard.set("", forKey: "User")
                 UserDefaults.standard.set("", forKey: "Point")
@@ -33,7 +35,7 @@ struct HomeView: View {
                         .fontWeight(.bold)
                         .modifier(TextModifier())
                     Spacer()
-                    NavigationLink(destination: ContentView(gameMode: 5), tag: 1, selection: $action) {
+                    NavigationLink(destination: GameView(gameMode: 5), tag: 1, selection: $action) {
                         Button {
                             self.action = 1
                         } label: {
@@ -42,7 +44,7 @@ struct HomeView: View {
                         }
                         .buttonStyle(.borderedProminent)
                     }
-                    NavigationLink(destination: ContentView(gameMode: 7), tag: 4, selection: $action) {
+                    NavigationLink(destination: GameView(gameMode: 7), tag: 4, selection: $action) {
                         Button {
                             self.action = 4
                         } label: {
@@ -51,7 +53,7 @@ struct HomeView: View {
                         }
                         .buttonStyle(.borderedProminent)
                     }
-                    NavigationLink(destination: ContentView(gameMode: 10), tag: 5, selection: $action) {
+                    NavigationLink(destination: GameView(gameMode: 10), tag: 5, selection: $action) {
                         Button {
                             self.action = 5
                         } label: {

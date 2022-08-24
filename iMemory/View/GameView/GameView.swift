@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct GameView: View {
     @ObservedObject var userModel: UserVM = UserVM()
-    @ObservedObject var memoryGame: MemoryGame
+    @ObservedObject var memoryGame: GameVM
     
     @State var userName = ""
     @State var show = false
     @State var gameMode: Int
     
-    init(memoryGame: MemoryGame = MemoryGame(randomNumOfPairs: 5), gameMode: Int, userName: String = "", show: Bool = false) {
+    init(memoryGame: GameVM = GameVM(randomNumOfPairs: 5), gameMode: Int, userName: String = "", show: Bool = false) {
         self.userModel = UserVM()
-        self.memoryGame = MemoryGame(randomNumOfPairs: gameMode)
+        self.memoryGame = GameVM(randomNumOfPairs: gameMode)
         self.userName = userName
         self.show = show
         self.gameMode = gameMode
@@ -48,7 +48,7 @@ struct ContentView: View {
             .foregroundColor(Color("Card"))
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: DetailView(name: userName, game: memoryGame, userModel: userModel))
-            UserRegister(name: $userName ,userModel: userModel, show: $show)
+            UserRegisterView(name: $userName ,userModel: userModel, show: $show)
         }
     }
     
@@ -98,7 +98,7 @@ struct ContentView: View {
 
 struct DetailView: View {
     var name: String
-    @ObservedObject var game: MemoryGame
+    @ObservedObject var game: GameVM
     @ObservedObject var userModel: UserVM
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>

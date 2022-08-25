@@ -57,6 +57,13 @@ struct GameView: View {
                     playSound(sound: "level-win", type: "mp3")
                 }
         }
+        .onAppear {
+            MusicPlayer.shared.startBackgroundMusic(backgroundMusicFileName: "game")
+        }
+        .onDisappear {
+            MusicPlayer.shared.stopBackgroundMusic()
+        }
+        
         
     }
     

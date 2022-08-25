@@ -20,6 +20,10 @@
 		3459D77128B75DB300152605 /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3459D77028B75DB300152605 /* WinView.swift */; };
 		3459D77328B7730900152605 /* level-win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3459D77228B7730900152605 /* level-win.mp3 */; };
 		3459D77528B775E700152605 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3459D77428B775E700152605 /* click.wav */; };
+		3459D77728B7C7AF00152605 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3459D77628B7C7AF00152605 /* MusicPlayer.swift */; };
+		3459D77928B7C8A700152605 /* grand-final-orchestral.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3459D77828B7C8A700152605 /* grand-final-orchestral.mp3 */; };
+		3459D77B28B7CE9F00152605 /* birdfish-happy-loop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3459D77A28B7CE9F00152605 /* birdfish-happy-loop.mp3 */; };
+		3459D77D28B7D0AD00152605 /* game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3459D77C28B7D0AD00152605 /* game.mp3 */; };
 		345D7F8B28B0E24800C72A94 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345D7F8A28B0E24800C72A94 /* HowToPlayView.swift */; };
 		345D7F8D28B0E28B00C72A94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345D7F8C28B0E28B00C72A94 /* HomeView.swift */; };
 		345D7F9028B1347B00C72A94 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345D7F8F28B1347B00C72A94 /* Pie.swift */; };
@@ -47,6 +51,10 @@
 		3459D77028B75DB300152605 /* WinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
 		3459D77228B7730900152605 /* level-win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "level-win.mp3"; sourceTree = "<group>"; };
 		3459D77428B775E700152605 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
+		3459D77628B7C7AF00152605 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		3459D77828B7C8A700152605 /* grand-final-orchestral.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "grand-final-orchestral.mp3"; sourceTree = "<group>"; };
+		3459D77A28B7CE9F00152605 /* birdfish-happy-loop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "birdfish-happy-loop.mp3"; sourceTree = "<group>"; };
+		3459D77C28B7D0AD00152605 /* game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game.mp3; sourceTree = "<group>"; };
 		345D7F8A28B0E24800C72A94 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		345D7F8C28B0E28B00C72A94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		345D7F8F28B1347B00C72A94 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
@@ -106,12 +114,16 @@
 		3459D76328B7478E00152605 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				3459D77C28B7D0AD00152605 /* game.mp3 */,
+				3459D77A28B7CE9F00152605 /* birdfish-happy-loop.mp3 */,
+				3459D77828B7C8A700152605 /* grand-final-orchestral.mp3 */,
 				3459D77428B775E700152605 /* click.wav */,
 				3459D77228B7730900152605 /* level-win.mp3 */,
 				3459D76E28B755F300152605 /* win.mp3 */,
 				3459D76C28B74FA800152605 /* failure.mp3 */,
 				3459D76A28B74D0400152605 /* success.mp3 */,
 				3459D76628B747E500152605 /* Sound.swift */,
+				3459D77628B7C7AF00152605 /* MusicPlayer.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -143,8 +155,8 @@
 		34DD710D289CF3FB0097B57E /* iMemory */ = {
 			isa = PBXGroup;
 			children = (
-				3459D76328B7478E00152605 /* Audio */,
 				34DD710E289CF3FB0097B57E /* iMemoryApp.swift */,
+				3459D76328B7478E00152605 /* Audio */,
 				3413FF9528B4E74B00E8AA6C /* Modifier */,
 				34DD7126289D113D0097B57E /* View Model */,
 				34DD7122289CFCFE0097B57E /* Model */,
@@ -250,11 +262,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3459D77328B7730900152605 /* level-win.mp3 in Resources */,
+				3459D77928B7C8A700152605 /* grand-final-orchestral.mp3 in Resources */,
 				3459D76B28B74D0400152605 /* success.mp3 in Resources */,
+				3459D77B28B7CE9F00152605 /* birdfish-happy-loop.mp3 in Resources */,
 				34DD7116289CF3FD0097B57E /* Preview Assets.xcassets in Resources */,
 				3459D77528B775E700152605 /* click.wav in Resources */,
 				34DD7113289CF3FD0097B57E /* Assets.xcassets in Resources */,
 				3459D76D28B74FA800152605 /* failure.mp3 in Resources */,
+				3459D77D28B7D0AD00152605 /* game.mp3 in Resources */,
 				3459D76F28B755F300152605 /* win.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +283,7 @@
 			files = (
 				341AB50D28B52C1D0030D587 /* UserModel.swift in Sources */,
 				34DD7125289D01AD0097B57E /* GameVM.swift in Sources */,
+				3459D77728B7C7AF00152605 /* MusicPlayer.swift in Sources */,
 				345D7F8D28B0E28B00C72A94 /* HomeView.swift in Sources */,
 				345D7F9028B1347B00C72A94 /* Pie.swift in Sources */,
 				341AB51928B6898E0030D587 /* GameButotn.swift in Sources */,

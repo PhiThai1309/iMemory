@@ -42,6 +42,7 @@ struct HomeView: View {
                             self.action = 1
 //                            AudioServicesPlaySystemSound(1110)
                             playSound(sound: "click", type: "wav")
+                            
                         } label: {
                             Text("EASY")
                                 .padding(5)
@@ -53,6 +54,7 @@ struct HomeView: View {
                             self.action = 4
 //                            AudioServicesPlaySystemSound(1110)
                             playSound(sound: "click", type: "wav")
+                            
                         } label: {
                             Text("MEDIUM")
                                 .padding(5)
@@ -64,6 +66,7 @@ struct HomeView: View {
                             self.action = 5
 //                            AudioServicesPlaySystemSound(1110)
                             playSound(sound: "click", type: "wav")
+                            
                         } label: {
                             Text("HARD")
                                 .padding(5)
@@ -77,6 +80,7 @@ struct HomeView: View {
                                 self.action = 2
 //                                AudioServicesPlaySystemSound(1110)
                                 playSound(sound: "click", type: "wav")
+                                
                             }label: {
                                 Text("How to play")
                                     .padding(5)
@@ -86,7 +90,7 @@ struct HomeView: View {
                         NavigationLink(destination: Leaderboard(), tag: 3, selection: $action) {
                             Button {
                                 self.action = 3
-                                playSound(sound: "win", type: "mp3")
+//                                playSound(sound: "win", type: "mp3")
                             } label: {
                                 Text("Leaderboard")
                                     .padding(5)

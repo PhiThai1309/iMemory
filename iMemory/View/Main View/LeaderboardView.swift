@@ -10,10 +10,6 @@ import SwiftUI
 struct Leaderboard: View {
     @ObservedObject var userModel: UserVM = UserVM()
     
-    init() {
-        
-    }
-    
     var body: some View {
         let point = userModel.getPoints()
         let user = userModel.getUsers()
@@ -21,16 +17,16 @@ struct Leaderboard: View {
             if user.count > 0 && point.count > 0 {
                 ScrollView {
                     ForEach(userModel.getUsers().indices, id: \.self) { index in
-                            HStack {
-                                Text(user[index])
-                                Spacer()
-                                Text("\(point[index])")
-                            }
-                            .modifier(TextModifier())
-                            .padding()
-                            .frame(maxWidth: .infinity, maxHeight: 200)
-                            .background(Color("Purple"))
-                            .cornerRadius(20)
+                        HStack {
+                            Text(user[index])
+                            Spacer()
+                            Text("\(point[index])")
+                        }
+                        .modifier(TextModifier())
+                        .padding()
+                        .frame(maxWidth: .infinity, maxHeight: 200)
+                        .background(Color("Purple"))
+                        .cornerRadius(20)
                     }
                     Spacer()
                 }
@@ -38,13 +34,21 @@ struct Leaderboard: View {
                 .padding()
                 .background(Color("Red")
                     .ignoresSafeArea())
+                
+                
             } else {
                 Text("No current user")
             }
             
         }
-        .navigationTitle("Leaderboard")
+        .onAppear {
+            MusicPlayer.shared.startBackgroundMusic(backgroundMusicFileName: "grand-final-orchestral")
+        }
+        .onDisappear {
+            MusicPlayer.shared.stopBackgroundMusic()
+        }
         
+        .navigationTitle("Leaderboard")
     }
 }
 

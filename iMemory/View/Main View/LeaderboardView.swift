@@ -10,6 +10,10 @@ import SwiftUI
 struct Leaderboard: View {
     @ObservedObject var userModel: UserVM = UserVM()
     
+    init() {
+        
+    }
+    
     var body: some View {
         let point = userModel.getPoints()
         let user = userModel.getUsers()
@@ -37,6 +41,7 @@ struct Leaderboard: View {
             } else {
                 Text("No current user")
             }
+            
         }
         .navigationTitle("Leaderboard")
         

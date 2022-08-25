@@ -7,10 +7,12 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 struct CardModel {
     private(set) var cards: Array<Card>
     private(set) var score: Int
+    private(set) var check: Int
     
     private var indexOfFacingUpCard: Int?
     private var numberOfPairsOfCards: Int
@@ -18,6 +20,7 @@ struct CardModel {
     init(numberOfPairsOfCards: Int, contentFactory: (Int) -> String) {
         cards = []
         score = 0
+        check = 0
         self.numberOfPairsOfCards = numberOfPairsOfCards
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = contentFactory(pairIndex)
@@ -28,7 +31,7 @@ struct CardModel {
         cards.shuffle()
     }
     
-    mutating func choose(card: Card) {
+    mutating func choose(card: Card){
         if let idx = cards.firstIndex(where: {$0.id == card.id}), !cards[idx].isFaceUp, !cards[idx].isMatched{
             if let potentialMatchIndex = indexOfFacingUpCard {
                 if cards[potentialMatchIndex].content == cards[idx].content {
@@ -39,8 +42,12 @@ struct CardModel {
                     } else {
                         changeScore(to: score + MATCH_POINT_CHANGE)
                     }
+                    win()
+                    playSound(sound: "success", type: "mp3")
                 } else if score > 1 && numberOfPairsOfCards == 10{
                     changeScore(to: score + MISMATCH_POINT_CHANGE)
+                } else {
+                    playSound(sound: "failure", type: "mp3")
                 }
                 indexOfFacingUpCard = nil
             } else {
@@ -57,7 +64,7 @@ struct CardModel {
         cards.shuffle()
     }
     
-    //MARK: Game Score
+    //MARK: -Game Score
     func getScore() -> Int {
         return score
     }
@@ -66,7 +73,15 @@ struct CardModel {
         score = newScore
     }
     
-    //MARK: Card Model
+    mutating func win() {
+        check += 1
+    }
+    
+    func getCheck() -> Int {
+        return check
+    }
+    
+    //MARK: -Card Model
     struct Card: Hashable, Identifiable {
         var id: Int
         

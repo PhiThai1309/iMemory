@@ -6,6 +6,7 @@
 // https://stackoverflow.com/questions/43402032/how-to-remove-all-userdefaults-data-swift
 
 import SwiftUI
+import AVFoundation
 
 struct HomeView: View {
     var user = UserDefaults.standard.object(forKey: "Continue") as? [String] ?? []
@@ -21,7 +22,6 @@ struct HomeView: View {
     @State private var selectedStudent = "Harry"
     
     var body: some View {
-        
         NavigationView {
             ZStack {
                 Color("Purple")
@@ -40,6 +40,8 @@ struct HomeView: View {
                     NavigationLink(destination: GameView(gameMode: 5), tag: 1, selection: $action) {
                         Button {
                             self.action = 1
+//                            AudioServicesPlaySystemSound(1110)
+                            playSound(sound: "click", type: "wav")
                         } label: {
                             Text("EASY")
                                 .padding(5)
@@ -49,6 +51,8 @@ struct HomeView: View {
                     NavigationLink(destination: GameView(gameMode: 7), tag: 4, selection: $action) {
                         Button {
                             self.action = 4
+//                            AudioServicesPlaySystemSound(1110)
+                            playSound(sound: "click", type: "wav")
                         } label: {
                             Text("MEDIUM")
                                 .padding(5)
@@ -58,6 +62,8 @@ struct HomeView: View {
                     NavigationLink(destination: GameView(gameMode: 10), tag: 5, selection: $action) {
                         Button {
                             self.action = 5
+//                            AudioServicesPlaySystemSound(1110)
+                            playSound(sound: "click", type: "wav")
                         } label: {
                             Text("HARD")
                                 .padding(5)
@@ -69,6 +75,8 @@ struct HomeView: View {
                         NavigationLink(destination: HowToPlay(), tag: 2, selection: $action) {
                             Button{
                                 self.action = 2
+//                                AudioServicesPlaySystemSound(1110)
+                                playSound(sound: "click", type: "wav")
                             }label: {
                                 Text("How to play")
                                     .padding(5)
@@ -78,6 +86,7 @@ struct HomeView: View {
                         NavigationLink(destination: Leaderboard(), tag: 3, selection: $action) {
                             Button {
                                 self.action = 3
+                                playSound(sound: "win", type: "mp3")
                             } label: {
                                 Text("Leaderboard")
                                     .padding(5)

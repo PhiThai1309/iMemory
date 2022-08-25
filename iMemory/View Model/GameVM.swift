@@ -62,6 +62,10 @@ class GameVM: ObservableObject {
     func getScore() -> Int {
         return model.getScore()
     }
+    
+    func getCheck() -> Int {
+        return model.getCheck()
+    }
 }
 
 

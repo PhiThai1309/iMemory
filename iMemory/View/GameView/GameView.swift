@@ -6,6 +6,7 @@
 // https://stackoverflow.com/questions/61930915/swiftui-detecting-the-navigationview-back-button-press
 
 import SwiftUI
+import AVFoundation
 
 struct GameView: View {
     @ObservedObject var userModel: UserVM = UserVM()
@@ -21,7 +22,6 @@ struct GameView: View {
         self.userName = userName
         self.show = show
         self.gameMode = gameMode
-        
     }
     
     let columns = [
@@ -49,6 +49,10 @@ struct GameView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: DetailView(name: userName, game: memoryGame, userModel: userModel))
             UserRegisterView(name: $userName ,userModel: userModel, show: $show)
+            WinView(check: memoryGame.getCheck(), gameMode: gameMode)
+                .onAppear {
+                    playSound(sound: "level-win", type: "mp3")
+                }
         }
     }
     

@@ -25,7 +25,7 @@ struct GameView: View {
     }
     
     let columns = [
-        GridItem(.adaptive(minimum: 80))
+        GridItem(.adaptive(minimum: 70))
     ]
     
     var body: some View {
@@ -33,9 +33,12 @@ struct GameView: View {
             Color("Purple")
                 .ignoresSafeArea()
             VStack {
-                Text("Welcome: \(userName)")
-                Text("Score: \(memoryGame.getScore())")
-                    .modifier(TextModifier())
+                HStack {
+                    Text("Welcome: \(userName)")
+                    Spacer()
+                    Text("Score: \(memoryGame.getScore())")
+                        .modifier(TextModifier())
+                }
                 gameBody
                 Spacer()
                 HStack{
@@ -54,6 +57,7 @@ struct GameView: View {
                     playSound(sound: "level-win", type: "mp3")
                 }
         }
+        
     }
     
     var gameBody: some View {

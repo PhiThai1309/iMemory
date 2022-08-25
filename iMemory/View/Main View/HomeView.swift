@@ -37,7 +37,7 @@ struct HomeView: View {
                     Spacer()
                     Text("Choose a game mode")
                         .modifier(TextModifier())
-                    NavigationLink(destination: GameView(gameMode: 5), tag: 1, selection: $action) {
+                    NavigationLink(destination: GameView(gameMode: 4), tag: 1, selection: $action) {
                         Button {
                             self.action = 1
 //                            AudioServicesPlaySystemSound(1110)
@@ -48,7 +48,7 @@ struct HomeView: View {
                         }
                         .modifier(GameButton())
                     }
-                    NavigationLink(destination: GameView(gameMode: 7), tag: 4, selection: $action) {
+                    NavigationLink(destination: GameView(gameMode: 8), tag: 4, selection: $action) {
                         Button {
                             self.action = 4
 //                            AudioServicesPlaySystemSound(1110)

@@ -39,6 +39,7 @@ struct Leaderboard: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
+                .ignoresSafeArea(.all, edges: .bottom)
                 .background(Color("Red")
                     .ignoresSafeArea())
             } else {

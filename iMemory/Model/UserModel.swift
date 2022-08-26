@@ -58,6 +58,7 @@ struct UserModel {
         return point[index]
     }
     
+    //Update point along side when user is playing
     mutating func updateLastPoint(point: Int) {
         let idx = user.count - 1
         self.point[idx] = point

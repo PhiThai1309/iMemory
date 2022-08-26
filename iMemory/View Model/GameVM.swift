@@ -50,15 +50,18 @@ class GameVM: ObservableObject {
         model.choose(card: card)
     }
     
+    //Shuffle call in Model
     func shuffle() {
         model.shuffle()
     }
     
+    //Restart call in model and shuffle
     func restart() {
         shuffle()
         createMemoryGame()
     }
     
+    //Get score from model
     func getScore() -> Int {
         return model.getScore()
     }

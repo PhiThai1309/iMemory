@@ -67,10 +67,12 @@ struct CardModel {
         }
     }
     
+    //Shuffle the array of cards
     mutating func shuffle() {
         cards.shuffle()
     }
     
+    //Check for matching pairs of cards
     func getCheck() -> Int {
         return check
     }
@@ -80,10 +82,12 @@ struct CardModel {
         return score
     }
     
+    //change score by adding or subtracting inside game logic
     mutating func changeScore(to newScore: Int) {
         score = newScore
     }
     
+    //Calcutaing matched pair of cards
     mutating func win() {
         check += 1
     }

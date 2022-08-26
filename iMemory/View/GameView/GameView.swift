@@ -67,7 +67,7 @@ struct GameView: View {
             
             //Overlap User register and Win view with condition check
             UserRegisterView(name: $userName ,userModel: userModel, buttonCheck: $buttonClickCheck, show: $show)
-            WinView(check: memoryGame.getCheck(), gameMode: gameMode)
+            WinView(check: memoryGame.getCheck(), gameMode: gameMode, score: memoryGame.getScore())
             //Play a sound when this view appear
                 .onAppear {
                     userModel.updatePoint(point: memoryGame.getScore())

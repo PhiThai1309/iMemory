@@ -14,16 +14,9 @@ import SwiftUI
 
 //Win view to check whenever user have matched all cards
 struct WinView: View {
-    @ObservedObject var memoryGame: GameVM
-    
-    private var check: Int
+    var check: Int
     var gameMode: Int
-    
-    init(memoryGame: GameVM = GameVM(randomNumOfPairs: 5), check: Int, gameMode: Int) {
-        self.memoryGame = GameVM(randomNumOfPairs: gameMode)
-        self.check = check
-        self.gameMode = gameMode
-    }
+    var score: Int
     
     var body: some View {
         if gameMode == check {
@@ -33,10 +26,12 @@ struct WinView: View {
                     Color("Green")
                     ZStack {
                         Image("Win")
+                            .opacity(0.7)
                         VStack{
                             Text("You win")
                                 .font(.system(.largeTitle, design: .rounded))
                                 .fontWeight(.bold)
+                            Text("Your score: \(self.score)")
                         }
                         .padding()
                     }

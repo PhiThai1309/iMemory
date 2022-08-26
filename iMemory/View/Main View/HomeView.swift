@@ -1,10 +1,16 @@
-//
-//  HomeView.swift
-//  iMemory
-//
-//  Created by Phi Thai on 20/08/2022.
-// https://stackoverflow.com/questions/43402032/how-to-remove-all-userdefaults-data-swift
-//https://stackoverflow.com/questions/72049879/avplayerviewcontroller-audio-continues-playing-in-background-after-dismissal
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Thai Manh Phi
+  ID: s3878070
+  Created  date: 20/08/2022
+  Last modified: 26/08/2022
+  Acknowledgement:
+ 1. https://stackoverflow.com/questions/43402032/how-to-remove-all-userdefaults-data-swift
+ 2. https://stackoverflow.com/questions/72049879/avplayerviewcontroller-audio-continues-playing-in-background-after-dismissal
+*/
 
 import SwiftUI
 import AVFoundation

@@ -1,9 +1,14 @@
-//
-//  ContentView.swift
-//  iMemory
-//
-//  Created by Phi Thai on 05/08/2022.
-// https://stackoverflow.com/questions/61930915/swiftui-detecting-the-navigationview-back-button-press
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Thai Manh Phi
+  ID: s3878070
+  Created  date: 05/08/2022
+  Last modified: 26/08/2022
+  Acknowledgement: https://stackoverflow.com/questions/61930915/swiftui-detecting-the-navigationview-back-button-press
+*/
 
 import SwiftUI
 import AVFoundation

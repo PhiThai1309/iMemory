@@ -1,10 +1,16 @@
-//
-//  Grid.swift
-//  iMemory
-//
-//  Created by Phi Thai on 26/08/2022.
-//https://github.com/JohnSmithCoder1/ToddleTimeSwiftUI/blob/main/ToddleTimeSwiftUI/Grid.swift
-//https://github.com/JohnSmithCoder1/ToddleTimeSwiftUI/blob/main/ToddleTimeSwiftUI/GridLayout.swift
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Thai Manh Phi
+  ID: s3878070
+  Created  date: 26/08/2022
+  Last modified: 26/08/2022
+  Acknowledgement:
+ 1. https://github.com/JohnSmithCoder1/ToddleTimeSwiftUI/blob/main/ToddleTimeSwiftUI/Grid.swift
+ 2. https://github.com/JohnSmithCoder1/ToddleTimeSwiftUI/blob/main/ToddleTimeSwiftUI/GridLayout.swift
+*/
 
 import SwiftUI
 

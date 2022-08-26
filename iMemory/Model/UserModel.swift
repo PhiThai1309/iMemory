@@ -1,11 +1,17 @@
-//
-//  User.swift
-//  iMemory
-//
-//  Created by Phi Thai on 23/08/2022.
-// https://serialcoder.dev/text-tutorials/swiftui/using-the-appstorage-property-wrapper-in-swiftui/
-// https://cocoacasts.com/ud-3-how-to-store-an-array-in-user-defaults-in-swift
-// https://www.hackingwithswift.com/books/ios-swiftui/storing-user-settings-with-userdefaults
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Thai Manh Phi
+  ID: s3878070
+  Created  date: 23/08/2022
+  Last modified: 26/08/2022
+  Acknowledgement:
+ 1. https://serialcoder.dev/text-tutorials/swiftui/using-the-appstorage-property-wrapper-in-swiftui/
+ 2. https://cocoacasts.com/ud-3-how-to-store-an-array-in-user-defaults-in-swift
+ 3. https://www.hackingwithswift.com/books/ios-swiftui/storing-user-settings-with-userdefaults
+*/
 
 import Foundation
 import SwiftUI

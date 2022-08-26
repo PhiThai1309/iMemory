@@ -1,12 +1,18 @@
-//
-//  UserRegister.swift
-//  iMemory
-//
-//  Created by Phi Thai on 23/08/2022.
-// https://codewithchris.com/swiftui/swiftui-textfield/
-// https://sarunw.com/posts/textfield-in-swiftui/
-// https://www.simpleswiftguide.com/swiftui-textfield-complete-tutorial/
- 
+/*
+  RMIT University Vietnam
+  Course: COSC2659 iOS Development
+  Semester: 2022B
+  Assessment: Assignment 2
+  Author: Thai Manh Phi
+  ID: s3878070
+  Created  date: 23/08/2022
+  Last modified: 26/08/2022
+  Acknowledgement:
+ 1. https://codewithchris.com/swiftui/swiftui-textfield/
+ 2. https://sarunw.com/posts/textfield-in-swiftui/
+ 3. https://www.simpleswiftguide.com/swiftui-textfield-complete-tutorial/
+*/
+
 import SwiftUI
 
 //User register view

@@ -15,6 +15,8 @@
 		341AB51928B6898E0030D587 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341AB51828B6898E0030D587 /* GameButton.swift */; };
 		3420335C28B8C489008F20C4 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420335B28B8C489008F20C4 /* GameMode.swift */; };
 		3420336828B8DBEE008F20C4 /* FunctionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420336728B8DBEE008F20C4 /* FunctionButton.swift */; };
+		3420336B28B90734008F20C4 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420336A28B90734008F20C4 /* Grid.swift */; };
+		3420336D28B91160008F20C4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420336C28B91160008F20C4 /* View.swift */; };
 		3459D76728B747E500152605 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3459D76628B747E500152605 /* Sound.swift */; };
 		3459D76B28B74D0400152605 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3459D76A28B74D0400152605 /* success.mp3 */; };
 		3459D76D28B74FA800152605 /* failure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3459D76C28B74FA800152605 /* failure.mp3 */; };
@@ -48,6 +50,8 @@
 		341AB51828B6898E0030D587 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 		3420335B28B8C489008F20C4 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		3420336728B8DBEE008F20C4 /* FunctionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionButton.swift; sourceTree = "<group>"; };
+		3420336A28B90734008F20C4 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		3420336C28B91160008F20C4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		3459D76628B747E500152605 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		3459D76A28B74D0400152605 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		3459D76C28B74FA800152605 /* failure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = failure.mp3; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 				341AB51828B6898E0030D587 /* GameButton.swift */,
 				345D7F9128B13B4100C72A94 /* Cardify.swift */,
 				3420336728B8DBEE008F20C4 /* FunctionButton.swift */,
+				3420336C28B91160008F20C4 /* View.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -122,6 +127,16 @@
 				3420335B28B8C489008F20C4 /* GameMode.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		3420336928B90712008F20C4 /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				3420335D28B8C5F7008F20C4 /* Button */,
+				345D7F8E28B1346F00C72A94 /* Shape */,
+				3420336A28B90734008F20C4 /* Grid.swift */,
+			);
+			path = Struct;
 			sourceTree = "<group>";
 		};
 		3459D76328B7478E00152605 /* Audio */ = {
@@ -168,6 +183,7 @@
 		34DD710D289CF3FB0097B57E /* iMemory */ = {
 			isa = PBXGroup;
 			children = (
+				3420336928B90712008F20C4 /* Struct */,
 				34DD710E289CF3FB0097B57E /* iMemoryApp.swift */,
 				3459D76328B7478E00152605 /* Audio */,
 				3413FF9528B4E74B00E8AA6C /* Modifier */,
@@ -200,10 +216,8 @@
 		34DD7123289CFD290097B57E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3420335D28B8C5F7008F20C4 /* Button */,
 				341AB51128B621A80030D587 /* Main View */,
 				341AB51028B532FB0030D587 /* GameView */,
-				345D7F8E28B1346F00C72A94 /* Shape */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -300,6 +314,7 @@
 				34DD7125289D01AD0097B57E /* GameVM.swift in Sources */,
 				3459D77728B7C7AF00152605 /* MusicPlayer.swift in Sources */,
 				345D7F8D28B0E28B00C72A94 /* HomeView.swift in Sources */,
+				3420336B28B90734008F20C4 /* Grid.swift in Sources */,
 				345D7F9028B1347B00C72A94 /* Pie.swift in Sources */,
 				341AB51928B6898E0030D587 /* GameButton.swift in Sources */,
 				3459D76728B747E500152605 /* Sound.swift in Sources */,
@@ -314,6 +329,7 @@
 				34DD710F289CF3FB0097B57E /* iMemoryApp.swift in Sources */,
 				3420336828B8DBEE008F20C4 /* FunctionButton.swift in Sources */,
 				3459D77128B75DB300152605 /* WinView.swift in Sources */,
+				3420336D28B91160008F20C4 /* View.swift in Sources */,
 				3413FF9428B4E08800E8AA6C /* LeaderboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

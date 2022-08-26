@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//Card content view
 struct CardView: View {
     var card: CardModel.Card
     
@@ -32,7 +33,7 @@ struct CardView: View {
                 Text(card.content).font(.largeTitle)
                     .rotationEffect(Angle.degrees(card.isMatched ? 360: 0))
 //                    .animation(Animation.easeInOut(duration: 1))
-                    .scaleEffect(Scale(size: geo.size))
+//                    .scaleEffect(Scale(size: geo.size))
             }
             .modifier(Cardify(isFaceUp: card.isFaceUp))
         }

@@ -27,8 +27,12 @@ struct GameView: View {
         self.buttonClickCheck = buttonClickCheck
     }
     
+    //This render a grid view of cards
     let columns = [
-        GridItem(.adaptive(minimum: 70))
+        GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
     ]
     
     var body: some View {
@@ -58,6 +62,7 @@ struct GameView: View {
             .padding(20)
             .foregroundColor(Color("Card"))
             .navigationBarBackButtonHidden(true)
+            .navigationBarTitle(Text(""), displayMode: .inline)
             
             //Replace back button with customize one
             .navigationBarItems(leading: BackButtonView(name: userName, game: memoryGame, userModel: userModel, buttonCheck: buttonClickCheck))
@@ -70,6 +75,7 @@ struct GameView: View {
                     playSound(sound: "level-win", type: "mp3")
                 }
         }
+        .ignoresSafeArea(.all, edges: .bottom)
         
         //Play and stop background sound on appear and on dissapear
         .onAppear {
@@ -83,24 +89,29 @@ struct GameView: View {
     }
     
     //Game body view here
+    
     var gameBody: some View {
-        LazyVGrid(columns: columns){
-            ForEach(memoryGame.cards) { card in
-                if !card.isFaceUp && card.isMatched {
-                    Rectangle().opacity(0.0)
-                } else {
-                    CardView(card: card)
-                        .aspectRatio(2/3 , contentMode: .fit)
-                        .transition(AnyTransition.scale)
-                        .onTapGesture {
-                            withAnimation {
-                                memoryGame.choose(card)
-                            }
-                        }
+        Grid(items: memoryGame.cards, aspectRatio: 2/3, content: {
+            card in
+//                if !card.isFaceUp && card.isMatched {
+//                    Rectangle().opacity(0.0)
+//                } else {
+//
+////                        .scaleEffect(Scale(size: geo.size))
+//                }
+            CardView(card: card)
+//                        .aspectRatio(2/3 , contentMode: .fit)
+                .transition(AnyTransition.scale)
+                .onTapGesture {
+                    withAnimation {
+                        memoryGame.choose(card)
+                    }
                 }
-            }
-            
-        }
+        })
+    }
+    
+    private func Scale(size: CGSize) -> CGFloat {
+        min(size.width, size.height) / 800
     }
     
     //Shuffle button here

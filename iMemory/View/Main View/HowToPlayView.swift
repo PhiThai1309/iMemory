@@ -63,7 +63,7 @@ struct HowToPlay: View {
             } header: {
                 Text("Leaderboard score")
             } footer: {
-                Text("If the user exits the game before completing the game, the current score will be saved, and the player cannot edit the score.")
+                Text("If the user exits the application before completing the game, the last attempt score will not be registered")
             }
             .headerProminence(.increased)
             

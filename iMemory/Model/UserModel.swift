@@ -57,4 +57,10 @@ struct UserModel {
         let index = user.firstIndex(of: name) ?? 0
         return point[index]
     }
+    
+    mutating func updateLastPoint(point: Int) {
+        let idx = user.count - 1
+        self.point[idx] = point
+        database.set(self.point, forKey: "Point")
+    }
 }

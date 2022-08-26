@@ -63,13 +63,14 @@ struct GameView: View {
             .navigationBarTitle(Text(""), displayMode: .inline)
             
             //Replace back button with customize one
-            .navigationBarItems(leading: BackButtonView(name: userName, game: memoryGame, userModel: userModel, buttonCheck: buttonClickCheck))
+            .navigationBarItems(leading: BackButtonView(name: userName, game: memoryGame, userModel: userModel))
             
             //Overlap User register and Win view with condition check
             UserRegisterView(name: $userName ,userModel: userModel, buttonCheck: $buttonClickCheck, show: $show)
             WinView(check: memoryGame.getCheck(), gameMode: gameMode)
             //Play a sound when this view appear
                 .onAppear {
+                    userModel.updatePoint(point: memoryGame.getScore())
                     playSound(sound: "level-win", type: "mp3")
                 }
         }
@@ -89,20 +90,25 @@ struct GameView: View {
     var gameBody: some View {
         Grid(items: memoryGame.cards, aspectRatio: 2/3, content: {
             card in
-            !card.isFaceUp && card.isMatched ?  AnyView(rec()) : AnyView(checkMatch(card: card))
+            !card.isFaceUp && card.isMatched ?  AnyView(rec(game: memoryGame)) : AnyView(checkMatch(card: card, game: memoryGame))
         })
     }
     
     //If is two cards matched, hide this card
-    func rec() -> some View {
+    func rec(game: GameVM) -> some View {
         Rectangle().opacity(0.0)
+            .onAppear {
+                userModel.updatePoint(point: game.getScore())
+                print(game.getScore())
+            }
     }
     
     //function to render the cards
-    func checkMatch(card: CardModel.Card) -> some View{
+    func checkMatch(card: CardModel.Card, game: GameVM) -> some View{
         CardView(card: card)
             .transition(AnyTransition.scale)
             .onTapGesture {
+                print(game.getScore())
                 withAnimation {
                     memoryGame.choose(card)
                 }
@@ -142,16 +148,12 @@ struct BackButtonView: View {
     var name: String
     @ObservedObject var game: GameVM
     @ObservedObject var userModel: UserVM
-    var buttonCheck: Bool
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
+        //Return back to Home view
         Button(
             action: {
-                //Check if the user have clicked the play game button from the register view
-                if(buttonCheck) {
-                    userModel.addPoint(game.getScore())
-                }
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
                 Image(systemName: "chevron.backward")

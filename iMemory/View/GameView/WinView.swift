@@ -1,9 +1,15 @@
-//
-//  UserRegister.swift
-//  iMemory
-//
-//  Created by Phi Thai on 23/08/2022.
- 
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2022B
+ Assessment: Assignment 2
+ Author: Thai Manh Phi
+ ID: s3878070
+ Created  date: 23/08/2022
+ Last modified: 26/08/2022
+ Acknowledgement: N/A
+ */
+
 import SwiftUI
 
 //Win view to check whenever user have matched all cards
@@ -25,10 +31,15 @@ struct WinView: View {
                 Color.black.opacity(gameMode == check ? 0.9 : 0).edgesIgnoringSafeArea(.all)
                 ZStack {
                     Color("Green")
-                    VStack{
-                        Text("You win")
+                    ZStack {
+                        Image("Win")
+                        VStack{
+                            Text("You win")
+                                .font(.system(.largeTitle, design: .rounded))
+                                .fontWeight(.bold)
+                        }
+                        .padding()
                     }
-                    .padding()
                 }
                 .frame(width: 300, height: 300)
                 .cornerRadius(20)

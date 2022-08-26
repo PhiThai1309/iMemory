@@ -26,9 +26,11 @@ class UserVM: ObservableObject {
         model.getPoint(name: name)
     }
     
-    //Add more user in User Model
+    //Add more user in User Model and initialize first score = 0
     func addUser(_ info: String) {
+        print(info)
         model.addUser(info)
+        model.addPoint(0)
     }
     
     //Add point to the User model
@@ -40,5 +42,10 @@ class UserVM: ObservableObject {
     //Get all points from user model
     func getPoints() -> [Int] {
         model.getPoints()
+    }
+    
+    //upfate point while user is playing
+    func updatePoint(point: Int) {
+        model.updateLastPoint(point: point)
     }
 }

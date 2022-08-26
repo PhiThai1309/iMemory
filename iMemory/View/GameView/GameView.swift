@@ -26,15 +26,7 @@ struct GameView: View {
         self.gameMode = gameMode
         self.buttonClickCheck = buttonClickCheck
     }
-    
-    //This render a grid view of cards
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
+
     var body: some View {
         ZStack {
             Color("Purple")
@@ -43,6 +35,7 @@ struct GameView: View {
                 //Information at the top of the screen
                 HStack {
                     Text("Welcome: \(userName)")
+                        .modifier(TextModifier())
                     Spacer()
                     Text("Score: \(memoryGame.getScore())")
                         .modifier(TextModifier())
@@ -75,7 +68,6 @@ struct GameView: View {
                     playSound(sound: "level-win", type: "mp3")
                 }
         }
-        .ignoresSafeArea(.all, edges: .bottom)
         
         //Play and stop background sound on appear and on dissapear
         .onAppear {
@@ -120,8 +112,9 @@ struct GameView: View {
             }
         } label: {
             Text("Shuffle")
-                .foregroundColor(Color("Green"))
+                .foregroundColor(Color("White"))
         }
+        .modifier(FunctionButotn(color: Color("Green")))
         
     }
     
@@ -133,8 +126,9 @@ struct GameView: View {
             }
         }  label: {
             Text("Restart")
-                .foregroundColor(Color("Green"))
+                .foregroundColor(Color("White"))
         }
+        .modifier(FunctionButotn(color: Color("Red")))
     }
 }
 
@@ -155,12 +149,10 @@ struct BackButtonView: View {
                 }
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
-                Image(systemName: "arrow.backward")
+                Image(systemName: "chevron.backward")
                     .foregroundColor(Color("Gray"))
-                //                    .font(Font.title.weight(.medium))
                 Text("Return")
                     .foregroundColor(Color("Gray"))
-                //                    .font(Font.title.weight(.medium))
             }
         )
     }

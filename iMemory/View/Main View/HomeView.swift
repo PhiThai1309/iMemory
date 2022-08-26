@@ -13,8 +13,8 @@ struct HomeView: View {
     
     init() {
         //For debug only: reset the data that's store in UserDefaults
-        UserDefaults.standard.set("", forKey: "User")
-        UserDefaults.standard.set("", forKey: "Point")
+//        UserDefaults.standard.set("", forKey: "User")
+//        UserDefaults.standard.set("", forKey: "Point")
     }
     
     //View change variable for button
@@ -32,11 +32,13 @@ struct HomeView: View {
                     Spacer()
                     Text("Choose a game mode")
                         .modifier(TextModifier())
+//                    game setting for three game mode
                     GameMode(gameMode: 4, tag: 1, action: $action, title: "EASY")
                     GameMode(gameMode: 8, tag: 2, action: $action, title: "MEDIUM")
                     GameMode(gameMode: 10, tag: 3, action: $action, title: "HARD")
                     Spacer()
                     HStack {
+                        //Navigate to how to play view
                         NavigationLink(destination: HowToPlay(), tag: 4, selection: $action) {
                             Button{
                                 self.action = 4
@@ -48,6 +50,7 @@ struct HomeView: View {
                             }
                             .modifier(FunctionButotn(color: Color("Green")))
                         }
+                        //Navigate to leaderboard view
                         NavigationLink(destination: Leaderboard(), tag: 5, selection: $action) {
                             Button {
                                 self.action = 5

@@ -3,16 +3,19 @@
 //  iMemory
 //
 //  Created by Phi Thai on 26/08/2022.
-//
+//https://github.com/JohnSmithCoder1/ToddleTimeSwiftUI/blob/main/ToddleTimeSwiftUI/Grid.swift
+//https://github.com/JohnSmithCoder1/ToddleTimeSwiftUI/blob/main/ToddleTimeSwiftUI/GridLayout.swift
 
 import SwiftUI
 
+//Generate desire card size depends on screen size
 struct Grid<ItemView>: View where ItemView: View {
     var items: [CardModel.Card]
     var aspectRatio: CGFloat
     var content: (CardModel.Card) -> ItemView
     
     var body: some View {
+        //Read screen size
         GeometryReader {
             geo in
             let width: CGFloat = widthFit(itemCount: items.count, in: geo.size, aspectRatio: aspectRatio)
@@ -25,6 +28,7 @@ struct Grid<ItemView>: View where ItemView: View {
         }
     }
     
+    //Find the best size for the card
     private func widthFit(itemCount: Int, in size: CGSize, aspectRatio: CGFloat) -> CGFloat {
         var colCount = 1
         var rowCount = itemCount

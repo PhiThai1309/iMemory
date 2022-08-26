@@ -12,6 +12,7 @@ struct HowToPlay: View {
     var body: some View {
         //Use list here
         List{
+            //Application introduction
             Section{
                 Text("iMemory was created with simple gameplay for everyone to play. Users randomly pick 2 cards, if they are similar, users will have a score and these 2 cards will disappear. The user will win after all the cards have been matched.")
             } header: {
@@ -19,6 +20,7 @@ struct HowToPlay: View {
             }
             .headerProminence(.increased)
             
+            //Game mode for this application
             Section {
                 Text("""
                     Easy mode:
@@ -50,12 +52,23 @@ struct HowToPlay: View {
             }
             .headerProminence(.increased)
             
+            //Leaderboard instruction
             Section {
                 Text("All scores will be displayed on the leaderboard with the respective player’s name.")
             } header: {
                 Text("Leaderboard score")
             } footer: {
                 Text("If the user exits the game before completing the game, the current score will be saved, and the player cannot edit the score.")
+            }
+            .headerProminence(.increased)
+            
+            //Author section
+            Section {
+                Text("Student: Thai Manh Phi, s3878070")
+                Text("Lecturer: Mr. Tom Huynh")
+                Text("Course: iOS Development")
+            } header: {
+                Text("Author")
             }
             .headerProminence(.increased)
         }

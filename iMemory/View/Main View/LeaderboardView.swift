@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Show past score from users
 struct Leaderboard: View {
     @ObservedObject var userModel: UserVM = UserVM()
     
@@ -14,6 +15,7 @@ struct Leaderboard: View {
         let point = userModel.getPoints()
         let user = userModel.getUsers()
         Group {
+            //check if the point array is equal to username array
             if user.count > 0 && point.count > 0 && point.count == user.count {
                 ScrollView {
                     ForEach(userModel.getUsers().indices, id: \.self) { index in
@@ -35,10 +37,12 @@ struct Leaderboard: View {
                 .background(Color("Red")
                     .ignoresSafeArea())
             } else {
+                //if there is no user
                 Text("No current user")
             }
             
         }
+        //start and stop background music
         .onAppear {
             MusicPlayer.shared.startBackgroundMusic(backgroundMusicFileName: "grand-final-orchestral")
         }

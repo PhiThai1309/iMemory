@@ -58,6 +58,7 @@ class GameVM: ObservableObject {
         return model.getScore()
     }
     
+    //Check to find all of the cards has been matched
     func getCheck() -> Int {
         return model.getCheck()
     }

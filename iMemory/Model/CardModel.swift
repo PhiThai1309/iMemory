@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
+//Card Model
 struct CardModel {
     private(set) var cards: Array<Card>
     private(set) var score: Int
@@ -31,6 +32,7 @@ struct CardModel {
         cards.shuffle()
     }
     
+    //Logic for choosing cards and calculating scores
     mutating func choose(card: Card){
         if let idx = cards.firstIndex(where: {$0.id == card.id}), !cards[idx].isFaceUp, !cards[idx].isMatched{
             if let potentialMatchIndex = indexOfFacingUpCard {
@@ -38,14 +40,14 @@ struct CardModel {
                     cards[potentialMatchIndex].isMatched = true
                     cards[idx].isMatched = true
                     if(numberOfPairsOfCards > 6) {
-                        changeScore(to: score + MATCH_POINT_CHANGE + Int(6 - cards[potentialMatchIndex].pastTime))
+                        changeScore(to: score + MATCH_POINT + Int(6 - cards[potentialMatchIndex].pastTime))
                     } else {
-                        changeScore(to: score + MATCH_POINT_CHANGE)
+                        changeScore(to: score + MATCH_POINT)
                     }
                     win()
                     playSound(sound: "success", type: "mp3")
                 } else if score - 5 > 1 && numberOfPairsOfCards == 10{
-                    changeScore(to: score + MISMATCH_POINT_CHANGE)
+                    changeScore(to: score + MISMATCH_POINT)
                 } else {
                     playSound(sound: "failure", type: "mp3")
                 }
@@ -64,6 +66,10 @@ struct CardModel {
         cards.shuffle()
     }
     
+    func getCheck() -> Int {
+        return check
+    }
+    
     //MARK: -Game Score
     func getScore() -> Int {
         return score
@@ -76,11 +82,7 @@ struct CardModel {
     mutating func win() {
         check += 1
     }
-    
-    func getCheck() -> Int {
-        return check
-    }
-    
+
     //MARK: -Card Model
     struct Card: Hashable, Identifiable {
         var id: Int
@@ -115,7 +117,6 @@ struct CardModel {
         
         
         //The accumulated time this card has turned face up
-        
         private var faceUpTime: TimeInterval {
             if let lastFaceUpDate = self.lastFaceUpDate {
                 return Date().timeIntervalSince(lastFaceUpDate)
@@ -124,56 +125,36 @@ struct CardModel {
             }
         }
         
+        //Check for bonus time remaining
         var bonusTimeRemaining: TimeInterval {
             max(0, bonusTimeLimit - faceUpTime)
         }
         
+        //check for bonus remaining
         var bonusRemaining: Double {
-            return            (bonusTimeLimit > 0 && bonusTimeRemaining > 0) ? bonusTimeRemaining/bonusTimeLimit : 0
+            return (bonusTimeLimit > 0 && bonusTimeRemaining > 0) ? bonusTimeRemaining/bonusTimeLimit : 0
         }
         
+        //check for using bonus time
         var isConsumingBonusTime: Bool {
             isFaceUp && !isMatched && bonusTimeRemaining > 0
         }
         
-        var bonusPoint: Int {
-            Int(bonusTimeLimit - pastTime)
-        }
-        
-        var hasEarnedBonus: Bool {
-            isMatched && bonusTimeRemaining > 0
-        }
-        
+        //Function to start bonus time
         private mutating func startUsingBonusTime() {
             if isConsumingBonusTime, lastFaceUpDate == nil  {
                 lastFaceUpDate = Date()
             }
         }
         
+        //function to stop bonus time
         private mutating func stopUsingBonusTime() {
             pastTime = faceUpTime
             lastFaceUpDate = nil
         }
     }
     
-    let MATCH_POINT_CHANGE = 10
-    let MISMATCH_POINT_CHANGE = -5
-    let MAX_BONUS_POINT = 6
-}
-
-extension Array {
-    var only: Element? {
-        count == 1 ? first : nil
-    }
-}
-
-extension Array where Element: Identifiable {
-    func firstIndex(matching: Element) -> Int? {    // return value is an Optional
-        for index in 0 ..< self.count {
-            if self[index].id == matching.id {
-                return index
-            }
-        }
-        return nil
-    }
+    
+    let MATCH_POINT = 10
+    let MISMATCH_POINT = -5
 }

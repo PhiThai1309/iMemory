@@ -9,16 +9,19 @@
  
 import SwiftUI
 
+//User register view
 struct UserRegisterView: View {
     @Binding var name: String
     @State private var action: Int? = 0
     @State private var already = false
     @State private var empty = false
     @ObservedObject var userModel: UserVM
+    @Binding var buttonCheck: Bool
     
     @Binding var show: Bool
     
     var body: some View {
+        //Show when user access to game view
         if !show {
             ZStack {
                 Color.black.opacity(!show ? 0.9 : 0).edgesIgnoringSafeArea(.all)
@@ -34,20 +37,23 @@ struct UserRegisterView: View {
                             )
                         }
                         Spacer()
+                        //Condition check about user register name
                         if(already) {
                             Text("User already exist, please register with a different name")
                         } else if(empty) {
                             Text("Please enter a name")
                         } else {}
                         Button {
+                            //Check for exist username
                             if(userModel.getUsers().contains(name)) {
                                 already = true
                                 empty = false
-                            } else if (name == "") {
+                            } else if (name == "") { //Check for empty name
                                 empty = true;
                                 already = false
                             }
                             else {
+                                buttonCheck = true
                                 already = false
                                 empty = false
                                 show = true

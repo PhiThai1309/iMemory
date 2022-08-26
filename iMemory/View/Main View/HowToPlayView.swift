@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+//How to play view
 struct HowToPlay: View {
     var body: some View {
+        //Use list here
         List{
             Section{
                 Text("iMemory was created with simple gameplay for everyone to play. Users randomly pick 2 cards, if they are similar, users will have a score and these 2 cards will disappear. The user will win after all the cards have been matched.")
@@ -58,6 +60,7 @@ struct HowToPlay: View {
             .headerProminence(.increased)
         }
         .navigationTitle("How to play")
+        //Play background music on appear
         .onAppear {
             MusicPlayer.shared.startBackgroundMusic(backgroundMusicFileName: "birdfish-happy-loop")
         }

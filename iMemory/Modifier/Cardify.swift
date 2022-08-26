@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+//Card modifiers for each card in the game
 struct Cardify: AnimatableModifier {
     var rotation: Double
     
+    //Initialize the struct of Cardify
     init(isFaceUp: Bool) {
         rotation = isFaceUp ? 0 : 180
     }

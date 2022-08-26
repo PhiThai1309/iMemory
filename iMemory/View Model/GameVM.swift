@@ -8,24 +8,29 @@
 import Foundation
 import SwiftUI
 
+//Game View Model
 class GameVM: ObservableObject {
+    //Initialize emojis and number of cards
     @State var emojis = ["👻", "🍉", "🍤", "🧆", "🍑", "🍲", "🍱", "🍙", "🍌", "🥘"]
     @Published var randomNumberOfPairs: Int
 
+    //Call Card model
     @Published private var model: CardModel
     
+    //Create an array of cards from Card model
+    var cards: Array<CardModel.Card> {
+        model.cards
+    }
     
+    //Create the game
     func createMemoryGame() {
-        //        return CardModel(numberOfPairsOfCards: randomNumberOfPairs) {
-        //            pairIndex in emojis[pairIndex]
-        //        }
-        
         self.model = CardModel(numberOfPairsOfCards: randomNumberOfPairs) {
                 pairIndex in emojis[pairIndex]
             }
             
     }
     
+    //Initialize Game view model
     init(emojis: [String] = ["👻", "🍉", "🍤", "🧆", "🍑", "🍲", "🍱", "🍙", "🍌", "🥘"], randomNumOfPairs: Int){
         self.emojis = emojis
         self.randomNumberOfPairs = randomNumOfPairs
@@ -34,16 +39,6 @@ class GameVM: ObservableObject {
             }
     
     }
-    
-//    func getGameMode() -> [String]{
-//        return MemoryGame.gameMode
-//    }
-    
-    
-    var cards: Array<CardModel.Card> {
-        model.cards
-    }
-    
     
     // MARK: -Intents
     func choose(_ card: CardModel.Card) {

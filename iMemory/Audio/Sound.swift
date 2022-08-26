@@ -10,6 +10,7 @@ import AVFoundation
 
 var audioPlayer: AVAudioPlayer?
 
+//Function to play a music for one time
 func playSound(sound: String, type: String) {
     if let path = Bundle.main.path(forResource: sound, ofType: type) {
         do {
@@ -17,20 +18,6 @@ func playSound(sound: String, type: String) {
             audioPlayer?.play()
         } catch {
             print("Error")
-        }
-    }
-}
-
-func startBackgroundMusic(sound: String, type: String) {
-    if let path = Bundle.main.path(forResource: sound, ofType: type) {
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-            guard let audioPlayer = audioPlayer else { return }
-            audioPlayer.numberOfLoops = -1 // for infinite times
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-        } catch {
-            print(error)
         }
     }
 }

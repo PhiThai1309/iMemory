@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 
+//Game view
 struct GameView: View {
     @ObservedObject var userModel: UserVM = UserVM()
     @ObservedObject var memoryGame: GameVM
@@ -15,13 +16,15 @@ struct GameView: View {
     @State var userName = ""
     @State var show = false
     @State var gameMode: Int
+    @State var buttonClickCheck: Bool
     
-    init(memoryGame: GameVM = GameVM(randomNumOfPairs: 5), gameMode: Int, userName: String = "", show: Bool = false) {
+    init(memoryGame: GameVM = GameVM(randomNumOfPairs: 5), gameMode: Int, userName: String = "", show: Bool = false, buttonClickCheck: Bool = false) {
         self.userModel = UserVM()
         self.memoryGame = GameVM(randomNumOfPairs: gameMode)
         self.userName = userName
         self.show = show
         self.gameMode = gameMode
+        self.buttonClickCheck = buttonClickCheck
     }
     
     let columns = [
@@ -33,14 +36,19 @@ struct GameView: View {
             Color("Purple")
                 .ignoresSafeArea()
             VStack {
+                //Information at the top of the screen
                 HStack {
                     Text("Welcome: \(userName)")
                     Spacer()
                     Text("Score: \(memoryGame.getScore())")
                         .modifier(TextModifier())
                 }
+                
+                //Show game body
                 gameBody
                 Spacer()
+                
+                //Show two button at the bottom of the screen
                 HStack{
                     shuffle
                     restart
@@ -50,13 +58,20 @@ struct GameView: View {
             .padding(20)
             .foregroundColor(Color("Card"))
             .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: DetailView(name: userName, game: memoryGame, userModel: userModel))
-            UserRegisterView(name: $userName ,userModel: userModel, show: $show)
+            
+            //Replace back button with customize one
+            .navigationBarItems(leading: BackButtonView(name: userName, game: memoryGame, userModel: userModel, buttonCheck: buttonClickCheck))
+            
+            //Overlap User register and Win view with condition check
+            UserRegisterView(name: $userName ,userModel: userModel, buttonCheck: $buttonClickCheck, show: $show)
             WinView(check: memoryGame.getCheck(), gameMode: gameMode)
+            //Play a sound when this view appear
                 .onAppear {
                     playSound(sound: "level-win", type: "mp3")
                 }
         }
+        
+        //Play and stop background sound on appear and on dissapear
         .onAppear {
             MusicPlayer.shared.startBackgroundMusic(backgroundMusicFileName: "game")
         }
@@ -67,6 +82,7 @@ struct GameView: View {
         
     }
     
+    //Game body view here
     var gameBody: some View {
         LazyVGrid(columns: columns){
             ForEach(memoryGame.cards) { card in
@@ -87,6 +103,7 @@ struct GameView: View {
         }
     }
     
+    //Shuffle button here
     var shuffle: some View {
         Button {
             withAnimation {
@@ -99,6 +116,7 @@ struct GameView: View {
         
     }
     
+    //Restart button here
     var restart: some View {
         Button {
             withAnimation {
@@ -111,16 +129,19 @@ struct GameView: View {
     }
 }
 
-struct DetailView: View {
+//Customize back button
+struct BackButtonView: View {
     var name: String
     @ObservedObject var game: GameVM
     @ObservedObject var userModel: UserVM
+    var buttonCheck: Bool
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
         Button(
             action: {
-                if(name != "") {
+                //Check if the user have clicked the play game button from the game view
+                if(!buttonCheck) {
                     userModel.addPoint(game.getScore())
                 }
                 self.presentationMode.wrappedValue.dismiss()

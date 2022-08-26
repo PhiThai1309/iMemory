@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//Button modifiers for game button
 struct GameButton: ViewModifier {
     func body(content: Content) -> some View {
         content

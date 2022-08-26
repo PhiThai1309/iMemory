@@ -14,7 +14,7 @@ struct Leaderboard: View {
         let point = userModel.getPoints()
         let user = userModel.getUsers()
         Group {
-            if user.count > 0 && point.count > 0 {
+            if user.count > 0 && point.count > 0 && point.count == user.count {
                 ScrollView {
                     ForEach(userModel.getUsers().indices, id: \.self) { index in
                         HStack {
@@ -34,8 +34,6 @@ struct Leaderboard: View {
                 .padding()
                 .background(Color("Red")
                     .ignoresSafeArea())
-                
-                
             } else {
                 Text("No current user")
             }
@@ -47,7 +45,6 @@ struct Leaderboard: View {
         .onDisappear {
             MusicPlayer.shared.stopBackgroundMusic()
         }
-        
         .navigationTitle("Leaderboard")
     }
 }

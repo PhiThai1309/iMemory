@@ -6,6 +6,7 @@
  
 import SwiftUI
 
+//Win view to check whenever user have matched all cards
 struct WinView: View {
     @ObservedObject var memoryGame: GameVM
     

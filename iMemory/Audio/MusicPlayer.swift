@@ -8,10 +8,12 @@
 import Foundation
 import AVFoundation
 
+//Use class here to create a singleton for the music not passing to another view
 class MusicPlayer {
     static let shared = MusicPlayer()
     var audioPlayer: AVAudioPlayer?
 
+    //Function to play music in a loop ceating a background music
     func startBackgroundMusic(backgroundMusicFileName: String) {
         if let bundle = Bundle.main.path(forResource: backgroundMusicFileName, ofType: "mp3") {
             let backgroundMusic = NSURL(fileURLWithPath: bundle)
@@ -27,6 +29,7 @@ class MusicPlayer {
         }
     }
     
+    //function to stop playing music
     func stopBackgroundMusic() {
         guard let audioPlayer = audioPlayer else { return }
         audioPlayer.stop()

@@ -46,7 +46,7 @@ struct HomeView: View {
                                 Text("How to play")
                                     .padding(5)
                             }
-                            .modifier(FunctionButotn())
+                            .modifier(FunctionButotn(color: Color("Green")))
                         }
                         NavigationLink(destination: Leaderboard(), tag: 5, selection: $action) {
                             Button {
@@ -56,7 +56,7 @@ struct HomeView: View {
                                 Text("Leaderboard")
                                     .padding(5)
                             }
-                            .modifier(FunctionButotn())
+                            .modifier(FunctionButotn(color: Color("Green")))
                         }
                     }
                     

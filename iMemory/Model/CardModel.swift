@@ -44,7 +44,7 @@ struct CardModel {
                     }
                     win()
                     playSound(sound: "success", type: "mp3")
-                } else if score > 1 && numberOfPairsOfCards == 10{
+                } else if score - 5 > 1 && numberOfPairsOfCards == 10{
                     changeScore(to: score + MISMATCH_POINT_CHANGE)
                 } else {
                     playSound(sound: "failure", type: "mp3")

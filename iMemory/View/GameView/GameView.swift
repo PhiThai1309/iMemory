@@ -30,9 +30,9 @@ struct GameView: View {
     //This render a grid view of cards
     let columns = [
         GridItem(.flexible()),
-                GridItem(.flexible()),
-                GridItem(.flexible()),
-                GridItem(.flexible())
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
     ]
     
     var body: some View {
@@ -89,29 +89,27 @@ struct GameView: View {
     }
     
     //Game body view here
-    
     var gameBody: some View {
         Grid(items: memoryGame.cards, aspectRatio: 2/3, content: {
             card in
-//                if !card.isFaceUp && card.isMatched {
-//                    Rectangle().opacity(0.0)
-//                } else {
-//
-////                        .scaleEffect(Scale(size: geo.size))
-//                }
-            CardView(card: card)
-//                        .aspectRatio(2/3 , contentMode: .fit)
-                .transition(AnyTransition.scale)
-                .onTapGesture {
-                    withAnimation {
-                        memoryGame.choose(card)
-                    }
-                }
+            !card.isFaceUp && card.isMatched ?  AnyView(rec()) : AnyView(checkMatch(card: card))
         })
     }
     
-    private func Scale(size: CGSize) -> CGFloat {
-        min(size.width, size.height) / 800
+    //If is two cards matched, hide this card
+    func rec() -> some View {
+        Rectangle().opacity(0.0)
+    }
+    
+    //function to render the cards
+    func checkMatch(card: CardModel.Card) -> some View{
+        CardView(card: card)
+            .transition(AnyTransition.scale)
+            .onTapGesture {
+                withAnimation {
+                    memoryGame.choose(card)
+                }
+            }
     }
     
     //Shuffle button here
@@ -158,7 +156,11 @@ struct BackButtonView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
                 Image(systemName: "arrow.backward")
-                    .foregroundColor(Color("Green"))
+                    .foregroundColor(Color("Gray"))
+                //                    .font(Font.title.weight(.medium))
+                Text("Return")
+                    .foregroundColor(Color("Gray"))
+                //                    .font(Font.title.weight(.medium))
             }
         )
     }

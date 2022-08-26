@@ -140,8 +140,8 @@ struct BackButtonView: View {
     var body: some View {
         Button(
             action: {
-                //Check if the user have clicked the play game button from the game view
-                if(!buttonCheck) {
+                //Check if the user have clicked the play game button from the register view
+                if(buttonCheck) {
                     userModel.addPoint(game.getScore())
                 }
                 self.presentationMode.wrappedValue.dismiss()

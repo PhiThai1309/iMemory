@@ -28,20 +28,25 @@ struct UserRegisterView: View {
                 ZStack {
                     Color("Green")
                     VStack{
-                        Text("Register: \(name)")
+                        Text("Register")
+                            .fontWeight(.bold)
+                            .modifier(TextModifier())
                         HStack {
                             Text("User name: ")
                             TextField(
-                                "Placeholder text",
+                                "Enter user name",
                                 text: $name
                             )
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                         Spacer()
                         //Condition check about user register name
                         if(already) {
                             Text("User already exist, please register with a different name")
+                                .foregroundColor(Color("Gray"))
                         } else if(empty) {
                             Text("Please enter a name")
+                                .foregroundColor(Color("Gray"))
                         } else {}
                         Button {
                             //Check for exist username

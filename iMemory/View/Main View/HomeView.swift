@@ -4,6 +4,7 @@
 //
 //  Created by Phi Thai on 20/08/2022.
 // https://stackoverflow.com/questions/43402032/how-to-remove-all-userdefaults-data-swift
+//https://stackoverflow.com/questions/72049879/avplayerviewcontroller-audio-continues-playing-in-background-after-dismissal
 
 import SwiftUI
 import AVFoundation
@@ -12,8 +13,8 @@ struct HomeView: View {
     
     init() {
         //For debug only: reset the data that's store in UserDefaults
-                UserDefaults.standard.set("", forKey: "User")
-                UserDefaults.standard.set("", forKey: "Point")
+        UserDefaults.standard.set("", forKey: "User")
+        UserDefaults.standard.set("", forKey: "Point")
     }
     
     //View change variable for button
@@ -24,14 +25,10 @@ struct HomeView: View {
             ZStack {
                 Color("Purple")
                     .ignoresSafeArea()
-//                Image("Card-img")
-//                    .resizable()
-//                    .frame(width:500, height: 500)
                 VStack {
-                    Text("iMemory")
-                        .font(.system(.largeTitle, design: .rounded))
-                        .fontWeight(.bold)
-                        .modifier(TextModifier())
+                    Image("iMemory")
+                        .resizable()
+                        .scaledToFit()
                     Spacer()
                     Text("Choose a game mode")
                         .modifier(TextModifier())
@@ -49,7 +46,7 @@ struct HomeView: View {
                                 Text("How to play")
                                     .padding(5)
                             }
-                            .buttonStyle(.borderedProminent)
+                            .modifier(FunctionButotn())
                         }
                         NavigationLink(destination: Leaderboard(), tag: 5, selection: $action) {
                             Button {
@@ -59,7 +56,7 @@ struct HomeView: View {
                                 Text("Leaderboard")
                                     .padding(5)
                             }
-                            .buttonStyle(.borderedProminent)
+                            .modifier(FunctionButotn())
                         }
                     }
                     

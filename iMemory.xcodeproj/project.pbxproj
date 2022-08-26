@@ -14,6 +14,7 @@
 		341AB50F28B530640030D587 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341AB50E28B530630030D587 /* UserVM.swift */; };
 		341AB51928B6898E0030D587 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341AB51828B6898E0030D587 /* GameButton.swift */; };
 		3420335C28B8C489008F20C4 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420335B28B8C489008F20C4 /* GameMode.swift */; };
+		3420336828B8DBEE008F20C4 /* FunctionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420336728B8DBEE008F20C4 /* FunctionButton.swift */; };
 		3459D76728B747E500152605 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3459D76628B747E500152605 /* Sound.swift */; };
 		3459D76B28B74D0400152605 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3459D76A28B74D0400152605 /* success.mp3 */; };
 		3459D76D28B74FA800152605 /* failure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3459D76C28B74FA800152605 /* failure.mp3 */; };
@@ -46,6 +47,7 @@
 		341AB50E28B530630030D587 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
 		341AB51828B6898E0030D587 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 		3420335B28B8C489008F20C4 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
+		3420336728B8DBEE008F20C4 /* FunctionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionButton.swift; sourceTree = "<group>"; };
 		3459D76628B747E500152605 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		3459D76A28B74D0400152605 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		3459D76C28B74FA800152605 /* failure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = failure.mp3; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				3413FF9628B4E75A00E8AA6C /* Text.swift */,
 				341AB51828B6898E0030D587 /* GameButton.swift */,
 				345D7F9128B13B4100C72A94 /* Cardify.swift */,
+				3420336728B8DBEE008F20C4 /* FunctionButton.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				34DD711D289CF4B40097B57E /* CardView.swift in Sources */,
 				341AB50B28B4EED80030D587 /* UserRegisterView.swift in Sources */,
 				34DD710F289CF3FB0097B57E /* iMemoryApp.swift in Sources */,
+				3420336828B8DBEE008F20C4 /* FunctionButton.swift in Sources */,
 				3459D77128B75DB300152605 /* WinView.swift in Sources */,
 				3413FF9428B4E08800E8AA6C /* LeaderboardView.swift in Sources */,
 			);

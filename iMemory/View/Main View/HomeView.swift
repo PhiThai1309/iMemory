@@ -90,7 +90,7 @@ struct HomeView: View {
                         NavigationLink(destination: Leaderboard(), tag: 3, selection: $action) {
                             Button {
                                 self.action = 3
-//                                playSound(sound: "win", type: "mp3")
+                                playSound(sound: "click", type: "wav")
                             } label: {
                                 Text("Leaderboard")
                                     .padding(5)
@@ -103,6 +103,7 @@ struct HomeView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
     }
 }
 

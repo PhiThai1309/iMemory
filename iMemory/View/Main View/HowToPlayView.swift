@@ -5,10 +5,6 @@
 //  Created by Phi Thai on 20/08/2022.
 //
 
-
-
-
-
 import SwiftUI
 
 struct HowToPlay: View {

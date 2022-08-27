@@ -158,6 +158,7 @@ struct BackButtonView: View {
         Button(
             action: {
                 self.presentationMode.wrappedValue.dismiss()
+                userModel.updatePoint(point: game.getScore())
             }, label: {
                 Image(systemName: "chevron.backward")
                     .foregroundColor(Color("Gray"))

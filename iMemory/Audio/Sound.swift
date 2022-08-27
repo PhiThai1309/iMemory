@@ -7,7 +7,9 @@
   ID: s3878070
   Created  date: 25/08/2022
   Last modified: 26/08/2022
-  Acknowledgement: N/A
+  Acknowledgement:
+ 1. https://www.hackingwithswift.com/forums/swiftui/playing-sound/4921
+ 2. https://stackoverflow.com/questions/59404039/how-to-play-audio-using-avaudioplayer-in-swiftui-project
 */
 
 import Foundation

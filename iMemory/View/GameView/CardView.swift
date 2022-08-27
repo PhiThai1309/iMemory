@@ -23,6 +23,7 @@ struct CardView: View {
         GeometryReader {
             geo in
             ZStack {
+                //Start time bonus animation for each card
                 if card.isConsumingBonusTime {
                     Pie(startAngle: Angle(degrees: 0 - 90), endAngle: Angle(degrees: 1 - animatedBonusRemaining * 360 - 90)).padding(5).opacity(0.3)
                         .onAppear {
@@ -31,20 +32,12 @@ struct CardView: View {
                                 animatedBonusRemaining = 0
                             }
                         }
-                } else {
-                    
-                }
+                } else { }
                 
                 Text(card.content).font(.largeTitle)
                     .rotationEffect(Angle.degrees(card.isMatched ? 360: 0))
-//                    .animation(Animation.easeInOut(duration: 1))
-//                    .scaleEffect(Scale(size: geo.size))
             }
             .modifier(Cardify(isFaceUp: card.isFaceUp))
         }
-    }
-    
-    private func Scale(size: CGSize) -> CGFloat {
-        min(size.width, size.height) / (50/0.7)
     }
 }

@@ -7,7 +7,8 @@
   ID: s3878070
   Created  date: 05/08/2022
   Last modified: 26/08/2022
-  Acknowledgement: N/A
+  Acknowledgement:
+ 1. https://github.com/DanielMartinezC/memorize-ios/blob/master/Memorize/Models/MemoryGame.swift
 */
 
 import Foundation

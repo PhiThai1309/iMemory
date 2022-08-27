@@ -7,7 +7,8 @@
   ID: s3878070
   Created  date: 25/08/2022
   Last modified: 26/08/2022
-  Acknowledgement: N/A
+  Acknowledgement:
+ 1. https://stackoverflow.com/questions/34600644/creating-music-instance-in-every-view-controller
 */
 
 import Foundation

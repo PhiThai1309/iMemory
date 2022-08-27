@@ -6,7 +6,7 @@
   Author: Thai Manh Phi
   ID: s3878070
   Created  date: 23/08/2022
-  Last modified: 26/08/2022
+  Last modified: 27/08/2022
   Acknowledgement:
  1. https://codewithchris.com/swiftui/swiftui-textfield/
  2. https://sarunw.com/posts/textfield-in-swiftui/

@@ -6,7 +6,7 @@
   Author: Thai Manh Phi
   ID: s3878070
   Created  date: 20/08/2022
-  Last modified: 26/08/2022
+  Last modified: 27/08/2022
   Acknowledgement:
  1. https://github.com/DanielMartinezC/memorize-ios/blob/master/Memorize/ViewModifiers/Cardify.swift
 */

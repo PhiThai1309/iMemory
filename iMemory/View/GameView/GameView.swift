@@ -6,7 +6,7 @@
   Author: Thai Manh Phi
   ID: s3878070
   Created  date: 05/08/2022
-  Last modified: 26/08/2022
+  Last modified: 27/08/2022
   Acknowledgement:
  1. https://stackoverflow.com/questions/61930915/swiftui-detecting-the-navigationview-back-button-press
  2. https://github.com/SamuelDo02/swiftuitutorials/edit/main/Flashcard.swift

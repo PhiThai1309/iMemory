@@ -129,11 +129,12 @@ struct GameView: View {
         
     }
     
-    //Restart button here
+    //Restart button here and reset user score
     var restart: some View {
         Button {
             withAnimation {
                 memoryGame.restart()
+                userModel.updatePoint(point: 0)
             }
         }  label: {
             Text("Restart")

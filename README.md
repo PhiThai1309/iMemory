@@ -1,4 +1,4 @@
-# iMemory
+# iMemory iOS Application
 Assignment 2 of iOS Development course at RMIT University
 
 <p align="center">
